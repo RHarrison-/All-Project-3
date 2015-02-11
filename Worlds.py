@@ -27,9 +27,11 @@ class squaregrid:
 
     def drawtile(self,gridid,TType):
         x,y = gridid
+        
         x = x*10
         y = y*10
-
+        
+        self.canvas.create_rectangle(10,10,20,20,fill = 'black')
         if TType == 'Tree Tile': self.canvas.create_image(x,y,anchor="nw",image=self.treeimage)
         if TType == 'Wall Tile': self.canvas.create_image(x,y,anchor="nw",image=self.wallimage)
         if TType == 'Grass Tile': self.canvas.create_rectangle(x,y,x+10,y+10,outline = 'medium sea green',fill= 'forest green')

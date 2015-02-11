@@ -17,30 +17,26 @@ program. This creates all tkinter objects on the screen, loads the imagaes and c
 to be manipulated. 
 '''
 
-def Initialise(Size):
+def Initialise(mapname):
     
-    choice = Size # changing between the different sized maps
+    #changing between the different sized maps
 
-    Map,Width,Height,GWidth,GHeight,ProjectBanner = getinfo(choice) #Loading variables for screen size and the maps to be used. 
+    Width,Height = getDimentions(mapname)
+    print(Width, Height)#Loading variables for screen size and the maps to be used. 
                  
     window = Tk() # creating the window
 
-    window.title("Virtual Robot: Treasure Hunt  ") #renaming the window.
+    window.title("Virtual Robot: Treasure Hunt   "  + mapname) #renaming the window.
 
     canvasMain = Canvas(window, width=Width, height=Height, bg='white') #creating the three canvas's whhich are drawn too. 
     canvasTreasures = Canvas(window, width=200, height=Height+100, bg='White')
     canvasRobotInfo = Canvas(window, width=Width, height=100, bg='White')
 
-    World = squaregrid(canvasMain,GWidth,GHeight) #This is the World that the robots navigate. 
+    World = squaregrid(canvasMain,Width//10,Height//10) #This is the World that the robots navigate. 
                                                     #we pass the world the canvas to draw on and its dimensions. 
     canvasMain.grid(row = 0,column = 0)
     canvasTreasures.grid(row = 0,column =1,rowspan=2)
     canvasRobotInfo.grid(row = 1,column = 0)
-
-    if choice < 2:
-        canvasRobotInfo.create_image(Width -1,3,anchor = NE,image=World.LargeProjectBanner)
-    else:
-        canvasRobotInfo.create_image(Width -1,3,anchor = NE,image=World.SmallProjectBanner) # displaying the graphic for the project.
 
     canvasTreasures.create_rectangle(2,8,200,Height+100)
     canvasRobotInfo.create_rectangle(10,2,Width,98)
@@ -50,7 +46,7 @@ def Initialise(Size):
     x = 0
     y = 0
 
-    with open(Map,'r') as f: # This is the code which reads the text files allowing me to create multiple maps
+    with open('Maps/' + mapname,'r') as f: # This is the code which reads the text files allowing me to create multiple maps
         for line in f:       # which can be loaded into the program. The loop reads the individual characters
             y += 1           # and and appends the coordinates to the appropiate attribute in the world.
             for character in line:

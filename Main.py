@@ -1,16 +1,29 @@
 from ProgramSetup import *
 from tkinter import *
 from Functions import *
+import os
         
 #========================= Initialisation ============================
 
 #User can select one of 3 maps at the command line.
-size = input("0: Large     1: Medium    2: Small")
+for root, dirnames, filenames in os.walk("E:\GitHub\Project3\All-Project-3\Maps"):
+    Maps = (filenames)
+    
+x=0
+for Map in Maps:
+    print (x, ': ', Map)
+    x+=1
+    
+print()     
+size = input("Enter the map number than press enter")
+print()
 
 size = int(size)
 
+mapname = Maps[size]
+
 #initalises the program. This creates all of the objects used and the World.
-(World,canvas,HUD) = Initialise(size)
+(World,canvas,HUD) = Initialise(mapname)
 
 #============================== Main =================================
 
@@ -25,7 +38,6 @@ is greatly improved.
 Running = True
 
 while Running == True:
-    
     for x in range (0,len(World.TrafficLightList)): #The simple random function to change the lights between the two possible colours. 
         rand = random.randint(0,1000)
         if rand >1 and rand <4:
