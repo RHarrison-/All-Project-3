@@ -21,8 +21,7 @@ def Initialise(mapname):
     
     #changing between the different sized maps
 
-    Width,Height = getDimentions(mapname)
-    print(Width, Height)#Loading variables for screen size and the maps to be used. 
+    Width,Height = getDimentions(mapname) #Loading variables for screen size and the maps to be used. 
                  
     window = Tk() # creating the window
 
@@ -30,16 +29,16 @@ def Initialise(mapname):
 
     canvasMain = Canvas(window, width=Width, height=Height, bg='white') #creating the three canvas's whhich are drawn too. 
     canvasTreasures = Canvas(window, width=200, height=Height+100, bg='White')
-    canvasRobotInfo = Canvas(window, width=Width, height=100, bg='White')
+    canvasRobotInfo = Canvas(window, width=Width-10, height=100, bg='White')
 
-    World = squaregrid(canvasMain,Width//10,Height//10) #This is the World that the robots navigate. 
+    World = squaregrid(canvasMain,(Width//10)+1,(Height//10)+1) #This is the World that the robots navigate. 
                                                     #we pass the world the canvas to draw on and its dimensions. 
     canvasMain.grid(row = 0,column = 0)
     canvasTreasures.grid(row = 0,column =1,rowspan=2)
     canvasRobotInfo.grid(row = 1,column = 0)
 
     canvasTreasures.create_rectangle(2,8,200,Height+100)
-    canvasRobotInfo.create_rectangle(10,2,Width,98)
+    canvasRobotInfo.create_rectangle(5,2,Width-15,98)
 
     HUD = RHUD(canvasRobotInfo,canvasMain)
     
@@ -53,6 +52,7 @@ def Initialise(mapname):
                 x += 1
                 if x == len(line):
                     x = 0
+                #print ((x,y), character)
                 if character == '0': World.grass.append((x,y))
                 if character == '1': World.walls.append((x,y))
                 if character == '2': World.water.append((x,y))
