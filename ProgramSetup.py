@@ -26,7 +26,7 @@ def Initialise(mapname):
     window = Tk() # creating the window
 
     window.title("Virtual Robot: Treasure Hunt   "  + mapname) #renaming the window.
-
+    
     canvasMain = Canvas(window, width=Width, height=Height, bg='white') #creating the three canvas's whhich are drawn too. 
     canvasTreasures = Canvas(window, width=200, height=Height+100, bg='White')
     canvasRobotInfo = Canvas(window, width=Width-10, height=100, bg='White')
