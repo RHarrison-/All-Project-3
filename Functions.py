@@ -10,8 +10,10 @@ occupied by a traffic light.
 '''
 
 def randomvalidcoord(World): #Finds a random coordinate which can be used(not a wall)
-    x1 = random.randint(1,200)
-    y1 = random.randint(1,200)
+    x1 = random.randint(1,World.width)
+    y1 = random.randint(1,World.height)
+
+    print (x1,y1)
         
     if (x1,y1) in World.grass:
         return (x1,y1)

@@ -53,10 +53,10 @@ def Initialise(mapname):
                 if x == len(line):
                     x = 0
                 #print ((x,y), character)
-                if character == '0': World.grass.append((x,y))
-                if character == '1': World.walls.append((x,y))
+                if character == '1': World.grass.append((x,y))
                 if character == '2': World.water.append((x,y))
                 if character == '3': World.trees.append((x,y))
+                if character == '4': World.walls.append((x,y))
 
     World.drawgrid() # draws the world.
 
