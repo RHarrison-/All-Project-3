@@ -12,8 +12,6 @@ occupied by a traffic light.
 def randomvalidcoord(World): #Finds a random coordinate which can be used(not a wall)
     x1 = random.randint(1,World.width)
     y1 = random.randint(1,World.height)
-
-    print (x1,y1)
         
     if (x1,y1) in World.grass:
         return (x1,y1)
@@ -38,7 +36,7 @@ def getDimentions(mapname):
     width = len(line)
     width=width+1
     y=y+1
-    width = width *10
-    y=y*10
+    width = width *16
+    y=y*16
               
     return width,y

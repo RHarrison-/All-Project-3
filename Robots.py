@@ -8,11 +8,11 @@ functionality of the project.
 
 #================== Robots ================================
 class Robot:
-    def __init__(self,canvas,RobotID, x, y,LandmarkList,TreasureList,TrafficLightList,World,size =10, speed =1.0, colour='blue'):
+    def __init__(self,canvas,RobotID, x, y,LandmarkList,TreasureList,TrafficLightList,World,size =16, speed =1.0, colour='blue'):
         self.canvas = canvas
         self.RobotID = RobotID
         self.colour = colour
-        self.Square = self.canvas.create_rectangle(x*10,y*10,x*10 + 10,y*10+10,fill = self.colour,outline = 'White')
+        self.Square = self.canvas.create_rectangle(x*16,y*16,x*16 + 16,y*16+16,fill = self.colour,outline = 'White')
         self.GridLocation = (x,y)
         self.CanvasLocation  = self.canvas.coords(self.Square)
         self.path = Queue()
@@ -48,7 +48,7 @@ class Robot:
         while not frontier.empty():
             current = frontier.get()
             #x,y = current
-            #square = canvasMain.create_rectangle((x*10),(y*10),(x*10)+10,(y*10)+10,outline = 'red')
+            #square = canvasMain.create_rectangle((x*10),(y*10),(x*10)+16,(y*10)+16,outline = 'red')
 
             if current == goal: # early exit. 
                 break
@@ -81,14 +81,14 @@ class Robot:
 
         for x in range (0,len(self.TrafficLightList)):
             x1,y1 = self.TrafficLightList[x].Location
-            x1=x1-10
-            y1=y1-10
+            x1=x1-16
+            y1=y1-16
             centrex,centrey,q,w = self.CanvasLocation
-            centrex = centrex + 5
-            centrey = centrey + 5
+            centrex = centrex + 8
+            centrey = centrey + 8
 
-            if centrex > x1 and centrex < x1 + 30:
-                if centrey > y1 and centrey < y1 + 30:
+            if centrex > x1 and centrex < x1 + 48:
+                if centrey > y1 and centrey < y1 + 48:
                     self.UnderLight = x #returns the number of the Traffic light, if a robot is under that light. 
 
         self.vx,self.vy = self.backupvx,self.backupvy
@@ -98,22 +98,25 @@ class Robot:
         x,y,x2,y2 = self.canvas.coords(self.Square)
         self.CanvasLocation = x,y,x2,y2
 
-        x =x/10
-        y =y/10
+        x =x/16
+        y =y/16
 
         if (x,y) in self.World.grass: #update the stored information for the grid location
             self.GridLocation = (x,y)
+            
 
         if (x,y) == self.NextTile: #once the robot reaches the tile one the path it is heading towards.
             if self.path.empty(): #If the path is empty, then the robot has arrived at its objects. 
                 self.vx = 0
                 self.vy = 0
                 self.HasObjective = False #Robot no longer has an objective.
+                
             else:
                 self.NextTile =self.path.get() #Returns the next tile in the path to move towards, and remove it from the list.
                 ntx,nty = self.NextTile
                 self.vx = ntx - x #calculates the velocity in which the robot should move to arrive at the next tile on the path.
                 self.vy = nty - y
+                
                 self.backupvx,self.backupvy = self.vx,self.vy
 
         
@@ -123,9 +126,9 @@ class Robot:
                 self.vx,self.vy = 0,0
                 
         #caluclation of the corrent coordinate which the robot should move too.
-        x = ((x *10) + (self.vx)*self.speed)  
-        y = ((y *10) + (self.vy)*self.speed)
-        
+        x = ((x *16) + (self.vx)*self.speed)  
+        y = ((y *16) + (self.vy)*self.speed)
+
         #Updates the position on the canvas in which the robot should be.
         self.canvas.coords(self.Square , x, y, x + self.size, y + self.size) 
     

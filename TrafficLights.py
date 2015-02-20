@@ -31,8 +31,8 @@ class TrafficLight():
 
             x,y=self.Location
     
-            x1=x/10
-            y1=y/10
+            x1=x/16
+            y1=y/16
 
             xx = -2
             i=0
@@ -49,15 +49,15 @@ class TrafficLight():
                     
                     p1 = p1+xx
                     
-                    p1=p1*10
+                    p1=p1*16
                     
                     p2=p2+yy
                     
-                    p2=p2*10
+                    p2=p2*16
 
-                    if (p1/10,p2/10) in self.World.grass:
+                    if (p1/16,p2/16) in self.World.grass:
                         i=i+1
-                        self.LSquare.append(self.canvas.create_rectangle(p1,p2,p1+10,p2+10,fill = TYPE,outline = 'light green'))
+                        self.LSquare.append(self.canvas.create_rectangle(p1,p2,p1+16,p2+16,fill = TYPE,outline = 'light green'))
                     
                     
                     

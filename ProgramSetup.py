@@ -31,7 +31,7 @@ def Initialise(mapname):
     canvasTreasures = Canvas(window, width=200, height=Height+100, bg='White')
     canvasRobotInfo = Canvas(window, width=Width-10, height=100, bg='White')
 
-    World = squaregrid(canvasMain,(Width//10)+1,(Height//10)+1) #This is the World that the robots navigate. 
+    World = squaregrid(canvasMain,(Width//16)+1,(Height//16)+1) #This is the World that the robots navigate. 
                                                     #we pass the world the canvas to draw on and its dimensions. 
     canvasMain.grid(row = 0,column = 0)
     canvasTreasures.grid(row = 0,column =1,rowspan=2)
@@ -55,8 +55,11 @@ def Initialise(mapname):
                 #print ((x,y), character)
                 if character == '1': World.grass.append((x,y))
                 if character == '2': World.water.append((x,y))
-                if character == '3': World.trees.append((x,y))
+                if character == '3': World.wood.append((x,y))
                 if character == '4': World.walls.append((x,y))
+                if character == '5': World.rocks.append((x,y))
+                if character == '6': World.sand.append((x,y))
+                if character == '7': World.lava.append((x,y))
 
     World.drawgrid() # draws the world.
 
@@ -78,17 +81,17 @@ def Initialise(mapname):
                  ['4','4'],
                  ['5','5']]
     
-    for x in range (0,10):#Creating all the Traffic Lights
-        x1,y1 = randomvalidcoord(World)
-        x1=x1*10
-        y1=y1*10
-        TrafficLightList.append(TrafficLight(canvasMain,(x1,y1),World))
+    #for x in range (0,10):#Creating all the Traffic Lights
+    #    x1,y1 = randomvalidcoord(World)
+    #    x1=x1*16
+    #    y1=y1*16
+    #    TrafficLightList.append(TrafficLight(canvasMain,(x1,y1),World))
 
-    for x in range (0,24): #Creating all the Landmarks
+    for x in range (0,5): #Creating all the Landmarks
         x1,y1 = randomvalidcoord(World)
         LandmarkList.append(Landmark(x,x1,y1,canvasMain))
 
-    TrA = len(Treasures)
+    TrA = 3 #len(Treasures)
 
     for x in range (0,TrA): #Uses information from the Treasure list to create Treasure Objects.
         Tr = Treasures.pop(0)
@@ -115,7 +118,8 @@ def Initialise(mapname):
         x1,y1 = randomvalidcoord(World)
         Colour = 'DodgerBlue2'
         if x % 2 == 0: Colour = 'Orange3'
-        RobotList.append(Robot(canvasMain,x,x1,y1,LandmarkList,TreasureList,TrafficLightList,World,speed = 1,size= 10,colour = Colour))
+        print(x1,y1)
+        RobotList.append(Robot(canvasMain,x,x1,y1,LandmarkList,TreasureList,TrafficLightList,World,speed = 1,size= 16,colour = Colour))
 
     World.RobotList = RobotList
     World.TrafficLightList = TrafficLightList

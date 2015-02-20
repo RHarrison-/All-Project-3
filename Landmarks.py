@@ -9,12 +9,12 @@ class Landmark():
         self.x = x
         self.y = y
         x,y = self.x,self.y
-        x=x*10
-        y=y*10
+        x=x*16
+        y=y*16
         self.location = (self.x,self.y)
         self.canvas = canvas
         self.found = False
-        self.square = self.canvas.create_rectangle(x,y,x+10,y+10,fill = "Dark Green",outline = 'Gold',width = 2)
+        self.square = self.canvas.create_rectangle(x,y,x+16,y+16,fill = "Dark Green",outline = 'Gold',width = 2)
         self.Treasure = ''
         
         

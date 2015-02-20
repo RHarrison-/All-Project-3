@@ -30,9 +30,9 @@ class RHUD():
         for x in range (0,len(RobotList)):
             
             rlx,rly,ignore1,ignore2 = RobotList[x].CanvasLocation
-            rlx,rly = rlx+5,rly+5
+            rlx,rly = rlx+8,rly+8
             tlx,tly = RobotList[x].ObjectiveLocation
-            tlx,tly = (tlx*10)+5,(tly*10)+5
+            tlx,tly = (tlx*16)+5,(tly*16)+5
              
             self.InfoCanvas.itemconfig(self.RobotCordLabels[x],text = RobotList[x].GridLocation)
             self.InfoCanvas.itemconfig(self.RobotScoreLables[x],text = RobotList[x].Score)
