@@ -29,10 +29,8 @@ class squaregrid:
     def drawtile(self,gridid,TType):
         x,y = gridid
         
-        x = x*16
-        y = y*16
-
-        if TType == 'Stone Tile': self.canvas.create_image(x,y,anchor="nw",image=self.stoneimage)
+        x = x*32
+        y = y*32
         
         if TType == 'Grass Tile':
             rand = random.randint(1, 100)
@@ -49,7 +47,7 @@ class squaregrid:
             elif rand  >=80:
                 self.canvas.create_image(x,y,anchor="nw",image=self.waterimage2)
 
-        
+        if TType == 'Stone Tile': canvas.create_image(x,y,anchor="nw",image=self.stoneimage1)
 
         #print ((x,y), TType)
 

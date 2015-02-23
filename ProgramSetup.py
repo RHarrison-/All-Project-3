@@ -40,7 +40,7 @@ def Initialise(mapname):
     canvasTreasures.create_rectangle(2,8,200,Height+100)
     canvasRobotInfo.create_rectangle(5,2,Width-15,98)
 
-    HUD = RHUD(canvasRobotInfo,canvasMain)
+   
     
     x = 0
     y = 0
@@ -49,17 +49,15 @@ def Initialise(mapname):
         for line in f:       # which can be loaded into the program. The loop reads the individual characters
             y += 1           # and and appends the coordinates to the appropiate attribute in the world.
             for character in line:
+                #print (character, character-1)
                 x += 1
                 if x == len(line):
                     x = 0
                 #print ((x,y), character)
                 if character == '1': World.grass.append((x,y))
                 if character == '2': World.water.append((x,y))
-                if character == '3': World.wood.append((x,y))
-                if character == '4': World.walls.append((x,y))
-                if character == '5': World.rocks.append((x,y))
-                if character == '6': World.sand.append((x,y))
-                if character == '7': World.lava.append((x,y))
+                if character == '3': World.stones.append((x,y))
+                
 
     World.drawgrid() # draws the world.
 
@@ -123,5 +121,7 @@ def Initialise(mapname):
 
     World.RobotList = RobotList
     World.TrafficLightList = TrafficLightList
+
+    HUD = RHUD(canvasRobotInfo,canvasMain)
         
     return World,canvasMain,HUD
