@@ -9,10 +9,16 @@ class surface():
         self.window = Tk()
         self.canvas = ''
         self.canvas_Tiles = ''
-        self.TType = 'Grass Tile'
+        self.TType = '1'
         self.TNum = '1'
         self.x = 0
         self.y = 0
+        self.TileWindow = {}
+        self.MapData = {}
+        self.MapExport = []
+        self.MapName = ''
+        self.rotation = 0
+        
         self.grassimage1 = PhotoImage(file = 'Graphics\Grass1.png')
         self.grassimage2 = PhotoImage(file = 'Graphics\Grass2.png')
         self.waterimage1 = PhotoImage(file = 'Graphics\Water1.png')
@@ -24,57 +30,46 @@ class surface():
                            [PhotoImage(file = 'Graphics\TRStump.png'),
                            PhotoImage(file = 'Graphics\BRStump.png')]]
 
-        self.a = PhotoImage(file = 'Graphics\GrassCliffN.png')
-        self.b = PhotoImage(file = 'Graphics\TopCliffN.png')
-        self.c = PhotoImage(file = 'Graphics\WaterCliffN.png')
-        self.d = PhotoImage(file = 'Graphics\WaterN.png')
+        self.I1 = PhotoImage(file = 'Graphics\GrassCliffN.png')
+        self.i1 = PhotoImage(file = 'Graphics\TopCliffN.png')
+        self.I2 = PhotoImage(file = 'Graphics\TopCliffN.png')
+        self.I3 = PhotoImage(file = 'Graphics\WaterCliffN.png')
+        self.I4 = PhotoImage(file = 'Graphics\WaterN.png')
         
-        self.e = PhotoImage(file = 'Graphics\GrassCliffNE.png')
-        self.f = PhotoImage(file = 'Graphics\TopCliffNE.png')
-        self.g = PhotoImage(file = 'Graphics\MiddleCliffNE.png')
-        self.h = PhotoImage(file = 'Graphics\WaterCliffNE.png')
-        self.i = PhotoImage(file = 'Graphics\WaterCLiffNtoNE.png')
-        self.j = PhotoImage(file = 'Graphics\WaterNE.png')
-        self.k = PhotoImage(file = 'Graphics\WaterOuterNE.png')
-        self.l = PhotoImage(file = 'Graphics\WaterOuterNE2.png')
+        self.I5 = PhotoImage(file = 'Graphics\GrassCliffNE.png')
+        self.I6 = PhotoImage(file = 'Graphics\TopCliffNE.png')
+        self.I7 = PhotoImage(file = 'Graphics\MiddleCliffNE.png')
+        self.I8= PhotoImage(file = 'Graphics\WaterCliffNE.png')
+        self.I9 = PhotoImage(file = 'Graphics\WaterCLiffNtoNE.png')
+        self.I10 = PhotoImage(file = 'Graphics\WaterNE.png')
+        self.I11 = PhotoImage(file = 'Graphics\WaterOuterNE.png')
+        self.I12 = PhotoImage(file = 'Graphics\WaterOuterNE2.png')
 
-        self.m = PhotoImage(file = 'Graphics\TopCliffE.png')
-        self.n = PhotoImage(file = 'Graphics\BottomCliffE.png')
-        self.o = PhotoImage(file = 'Graphics\WaterCliffE.png')
+        self.I13 = PhotoImage(file = 'Graphics\TopCliffE.png')
+        self.I14 = PhotoImage(file = 'Graphics\BottomCliffE.png')
+        self.I15 = PhotoImage(file = 'Graphics\WaterCliffE.png')
 
-        #self.LSE1 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LSE2 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LSE3 = PhotoImage(file = 'Graphics\WaterCliffE.png')
+        #self.I16 = PhotoImage(file = 'Graphics\.png') p
+        #self.I17 = PhotoImage(file = 'Graphics\.png') q
+        #self.I18 = PhotoImage(file = 'Graphics\.png') r
 
-        #self.LS1 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LS2 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LS3 = PhotoImage(file = 'Graphics\WaterCliffE.png')
+        #self.I19 = PhotoImage(file = 'Graphics\.png') s
+        #self.I20 = PhotoImage(file = 'Graphics\.png') t
+        #self.I21 = PhotoImage(file = 'Graphics\.png') u
 
-        #self.LWSW1 = PhotoImage(file = 'Graphics\TopCliffSW.png')
-        #self.LWSW2 = PhotoImage(file = 'Graphics\BottomCliffSW.png')
-        #self.LWSW3 = PhotoImage(file = 'Graphics\WaterCliffSW.png')
-        
-        #self.LWW1 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LWW2 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        #self.LWW2 = PhotoImage(file = 'Graphics\WaterCliffE.png')
+        #self.I22 = PhotoImage(file = 'Graphics\.png') v
+        #self.I23 = PhotoImage(file = 'Graphics\.png') w
+        #self.I24 = PhotoImage(file = 'Graphics\.png') x
+
+        #self.I25 = PhotoImage(file = 'Graphics\.png') y 
+        #self.I26 = PhotoImage(file = 'Graphics\.png') z
+        #self.I27 = PhotoImage(file = 'Graphics\.png') A
          
-        #self.LWTCNW = PhotoImage(file = 'Graphics\TopCliffNW.png')
-        #self.LWBCNW = PhotoImage(file = 'Graphics\BottomCliffNW.png')
-        #self.LWWCNW = PhotoImage(file = 'Graphics\WaterCliffNW.png')
-        
-
-        
-        self.binds = {'1':'1','2':'2','3':'3',
-                      '4':'a','5':'b','6':'c','7':'d','8':'e','9':'f',
-                      '10':'g','11':'h','12':'i','13':'j','14':'k','15':'l',
-                      '16':'m','17':'n','18':'o',
-                      '19':'','20':'21','22':'23','24':'25','26':'27','28':'28'}
+        #self.I28 = PhotoImage(file = 'Graphics\.png') B
+        #self.I29 = PhotoImage(file = 'Graphics\.png') C 
+        #self.I30 = PhotoImage(file = 'Graphics\.png') D
                       
-        self.TileWindow = {}
-        self.MapData = {}
-        self.MapExport = []
-        self.MapName = ''
-        self.rotation = 0
+        
 
     def openfile(self):
         
@@ -100,14 +95,13 @@ class surface():
                 x=0
                 for char in line:
                     x+=1
-                    if char.isdigit() == True:
-                        self.TType = self.binds[char]
-                        self.draw(self.canvas_Tiles,self.TType,x*16,y*16)
+                    self.TType = char
+                    self.draw(self.canvas,self.TType,x*16,y*16)
 
     def reset(self):
         for x in range (0,self.x):
             for y in range(0,self.y):
-                self.draw(self.canvas,'Grass Tile',x,y)
+                self.draw(self.canvas,'1',x*16,y*16)
 
     def savemap(self):
         self.MapExport.clear()
@@ -116,6 +110,7 @@ class surface():
                 self.MapExport.append(self.MapData[(x,y)])
 
         self.MapName = tkfd.asksaveasfile(mode = 'w', defaultextension=".txt")
+        
         if self.MapName is None:
             return #stops trying to save the map if user presses cancel
         
@@ -138,7 +133,6 @@ class surface():
             elif rand >=95:
                 canvas.create_image(x,y,anchor="nw",image=self.grassimage2)
  
- 
         if TType == '2':
             rand = random.randint(1, 100)
             if rand <80:
@@ -147,27 +141,28 @@ class surface():
                 canvas.create_image(x,y,anchor="nw",image=self.waterimage2)
 
         if TType == '3': canvas.create_image(x,y,anchor="nw",image=self.stoneimage)
-        if TType == '28': canvas.create_image(x,y,anchor="nw",image=self.flowerimage)
+        if TType == '4': canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][self.rotation])
+        if TType == '5': canvas.create_image(x,y,anchor="nw",image=self.stumpimage[1][self.rotation])
+        if TType == '6': canvas.create_image(x,y,anchor="nw",image=self.flowerimage)
 
-    
 
-        if TType == 'a': canvas.create_image(x,y,anchor="nw",image=self.a)
-        if TType == 'b': canvas.create_image(x,y,anchor="nw",image=self.b)
-        if TType == 'c': canvas.create_image(x,y,anchor="nw",image=self.c)
-        if TType == 'd': canvas.create_image(x,y,anchor="nw",image=self.d)
+        if TType == 'a': canvas.create_image(x,y,anchor="nw",image=self.I1)
+        if TType == 'b': canvas.create_image(x,y,anchor="nw",image=self.I2)
+        if TType == 'c': canvas.create_image(x,y,anchor="nw",image=self.I3)
+        if TType == 'd': canvas.create_image(x,y,anchor="nw",image=self.I4)
         
-        if TType == 'e': canvas.create_image(x,y,anchor="nw",image=self.e)
-        if TType == 'f': canvas.create_image(x,y,anchor="nw",image=self.f)
-        if TType == 'g': canvas.create_image(x,y,anchor="nw",image=self.g)
-        if TType == 'h': canvas.create_image(x,y,anchor="nw",image=self.h)
-        if TType == 'i': canvas.create_image(x,y,anchor="nw",image=self.i)
-        if TType == 'j': canvas.create_image(x,y,anchor="nw",image=self.j)
-        if TType == 'k': canvas.create_image(x,y,anchor="nw",image=self.k)
-        if TType == 'l': canvas.create_image(x,y,anchor="nw",image=self.l)
+        if TType == 'e': canvas.create_image(x,y,anchor="nw",image=self.I5)
+        if TType == 'f': canvas.create_image(x,y,anchor="nw",image=self.I6)
+        if TType == 'g': canvas.create_image(x,y,anchor="nw",image=self.I7)
+        if TType == 'h': canvas.create_image(x,y,anchor="nw",image=self.I8)
+        if TType == 'i': canvas.create_image(x,y,anchor="nw",image=self.I9)
+        if TType == 'j': canvas.create_image(x,y,anchor="nw",image=self.I10)
+        if TType == 'k': canvas.create_image(x,y,anchor="nw",image=self.I11)
+        if TType == 'l': canvas.create_image(x,y,anchor="nw",image=self.I12)
 
-        if TType == 'm': canvas.create_image(x,y,anchor="nw",image=self.m)
-        if TType == 'n': canvas.create_image(x,y,anchor="nw",image=self.n)
-        if TType == 'o': canvas.create_image(x,y,anchor="nw",image=self.o)
+        if TType == 'm': canvas.create_image(x,y,anchor="nw",image=self.I13)
+        if TType == 'n': canvas.create_image(x,y,anchor="nw",image=self.I14)
+        if TType == 'o': canvas.create_image(x,y,anchor="nw",image=self.I15)
         
         self.MapData[(y//16,x//16)] = self.TType
           
@@ -194,8 +189,7 @@ class surface():
     def Key(self,event):
         
         if event.char.isdigit() == True:            
-            self.TType = self.binds[event.char]
-            self.TNum = event.char
+            self.TType = event.char
         else:
                 
             if event.char == 'p':
@@ -209,7 +203,7 @@ class surface():
 
             if event.char == 'r':
                 self.rotation +=1
-                if self.rotation ==8: self.rotation = 0
+                if self.rotation ==2: self.rotation = 0
                     
 
     def create(self,x,y):
@@ -259,7 +253,7 @@ def round_down(num, divisor):
 
 def something():
     surface1 = surface()
-    surface1.create(25,20)
+    surface1.create(25,25)
     #surface1.openfile()    
     surface1.window.mainloop()
     

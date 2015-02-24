@@ -6,7 +6,7 @@ import os
 #========================= Initialisation ============================
 
 #User can select one of 3 maps at the command line.
-for root, dirnames, filenames in os.walk("E:\GitHub\Project3\All-Project-3\Maps"):
+for root, dirnames, filenames in os.walk("Maps"):
     Maps = (filenames)
     
 x=0
