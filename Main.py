@@ -2,7 +2,7 @@ from ProgramSetup import *
 from tkinter import *
 from Functions import *
 import os
-        
+
 #========================= Initialisation ============================
 
 #User can select one of 3 maps at the command line.
@@ -15,15 +15,16 @@ for Map in Maps:
     x+=1
     
 print()     
-size = input("Enter the map number than press enter")
+choice = input("Enter the map number than press enter")
 print()
 
-size = int(size)
+choice = int(choice)
 
-mapname = Maps[size]
+mapname = Maps[choice]
+
 
 #initalises the program. This creates all of the objects used and the World.
-(World,canvas,HUD) = Initialise(mapname)
+(World,canvas) = Initialise(mapname)
 
 #============================== Main =================================
 
@@ -37,23 +38,8 @@ is greatly improved.
 
 Running = True
 
-while Running == True:
-    for x in range (0,len(World.TrafficLightList)): #The simple random function to change the lights between the two possible colours. 
-        rand = random.randint(0,1000)
-        if rand >1 and rand <4:
-            World.TrafficLightList[x].Switch('DodgerBlue2')
-        if rand >3 and rand <6:
-            World.TrafficLightList[x].Switch('Orange3')
-            
-    for x in range (0,len(World.RobotList)): #So all actions within here are implimented for both Robots
-        
-        if World.RobotList[x].HasObjective == False:  #If the Robot doesnt have a Objective, then the robot is assigned a new objective. 
-            World.RobotList[x].FindNewObjective()
-            World.RobotList[x].HasObjective = True
-    
-        World.RobotList[x].FollowPath() #The code to make the robot follow its path to the objective.
-        
-    HUD.Update(World.RobotList) #Update the HUD including the Score, position and Objective lines of the robots. 
-    canvas.update() #Update the Main canvas. 
+while Running == True:        
+    if World.Player.HasObjective == True: World.Player.FollowPath()
+    World.canvas.update()
     time.sleep(0.01)
 window.mainloop()
