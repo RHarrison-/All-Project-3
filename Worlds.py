@@ -5,97 +5,111 @@ import random
 class squaregrid:
     def __init__ (self,canvas):
         self.canvas = canvas
-        self.width = 0
-        self.height = 0
+        self.screenwidth = 40
+        self.screenheight = 25
         self.screenlocation = (0,0)
         self.Player = ''
         self.CursorSquare = ''
-        
         self.MapData = {}
-        
-        self.stoneimage = PhotoImage(file = 'Graphics\Stone.png')
-        self.grassimage1 = PhotoImage(file = 'Graphics\Grass1.png')
-        self.grassimage2 = PhotoImage(file = 'Graphics\Grass2.png')
-        self.waterimage1 = PhotoImage(file = 'Graphics\Water1.png')
-        self.waterimage2 = PhotoImage(file = 'Graphics\Water2.png')
-        self.flowerimage = PhotoImage(file = 'Graphics\Flower.png')
-        self.stumpimage = [[PhotoImage(file = 'Graphics\TLStump.png'),
-                           PhotoImage(file = 'Graphics\BLStump.png')],
-                           [PhotoImage(file = 'Graphics\TRStump.png'),
-                           PhotoImage(file = 'Graphics\BRStump.png')]]
-        self.I1 = PhotoImage(file = 'Graphics\GrassCliffN.png') #a
-        self.i1 = PhotoImage(file = 'Graphics\TopCliffN.png')
-        self.I2 = PhotoImage(file = 'Graphics\TopCliffN.png')
-        self.I3 = PhotoImage(file = 'Graphics\WaterCliffN.png')
-        self.I4 = PhotoImage(file = 'Graphics\WaterN.png')
-        self.I5 = PhotoImage(file = 'Graphics\GrassCliffNE.png')
-        self.I6 = PhotoImage(file = 'Graphics\TopCliffNE.png')
-        self.I7 = PhotoImage(file = 'Graphics\MiddleCliffNE.png')
-        self.I8 = PhotoImage(file = 'Graphics\WaterCliffNE.png')
-        self.I9 = PhotoImage(file = 'Graphics\WaterCLiffNtoNE.png')
-        self.I10 = PhotoImage(file = 'Graphics\WaterNE.png')
-        self.I11 = PhotoImage(file = 'Graphics\WaterOuterNE.png')
-        self.I12 = PhotoImage(file = 'Graphics\WaterOuterNE2.png')
-        self.I13 = PhotoImage(file = 'Graphics\TopCliffE.png')
-        self.I14 = PhotoImage(file = 'Graphics\BottomCliffE.png')
-        self.I15 = PhotoImage(file = 'Graphics\WaterCliffE.png')
-        self.I16 = PhotoImage(file = 'Graphics\TopCliffNW.png')
-        self.I17 = PhotoImage(file = 'Graphics\CliffMiddleNW.png')
-        self.I18 = PhotoImage(file = 'Graphics\CliffBottomNW.png')
-        self.I19 = PhotoImage(file = 'Graphics\CliffGrassNW.png')
-        self.I20 = PhotoImage(file = 'Graphics\WaterCliffNW.png')        
-        self.I21 = PhotoImage(file = 'Graphics\CliffTopW.png')
-        self.I22 = PhotoImage(file = 'Graphics\MiddleCliffW.png')
-        self.I23 = PhotoImage(file = 'Graphics\WaterW.png')
-        self.I24 = PhotoImage(file = 'Graphics\GrassCliffSW.png')
-        self.I25 = PhotoImage(file = 'Graphics\TopCliffSW.png')  
-        self.I26 = PhotoImage(file = 'Graphics\GrassSW.png')         
-        self.I27 = PhotoImage(file = 'Graphics\BottomCliffSW.png') 
-        self.I28 = PhotoImage(file = 'Graphics\WaterSW.png') 
-        self.I29 = PhotoImage(file = 'Graphics\WaterCornerSW.png') 
-        self.I30 = PhotoImage(file = 'Graphics\GrassCliffS.png')
-        self.I31 = PhotoImage(file = 'Graphics\TopCliffS.png') 
-        self.I32 = PhotoImage(file = 'Graphics\MiddleCliffS.png')
-        self.I33 = PhotoImage(file = 'Graphics\BottomCliffS.png')
-        self.I34 = PhotoImage(file = 'Graphics\WaterS.png')
-        self.I35 = PhotoImage(file = 'Graphics\GrassSE.png')
-        self.I36 = PhotoImage(file = 'Graphics\GrassCliffSE.png')
-        self.I37 = PhotoImage(file = 'Graphics\TopCliffSE.png')
-        self.I38 = PhotoImage(file = 'Graphics\BottomCliffSE.png')
-        self.I39 = PhotoImage(file = 'Graphics\WaterCliffSE.png')
-        self.I40 = PhotoImage(file = 'Graphics\CornerWaterSE.png')
-        #self.I41 = PhotoImage(file = 'Graphics\.png')# O
-        #self.I42 = PhotoImage(file = 'Graphics\.png')# P
-        #self.I43 = PhotoImage(file = 'Graphics\.png')# Q
-        #self.I44 = PhotoImage(file = 'Graphics\.png')# R
-        #self.I45 = PhotoImage(file = 'Graphics\.png')# S
-        #self.I46 = PhotoImage(file = 'Graphics\.png')# T
-        #self.I47 = PhotoImage(file = 'Graphics\.png')# U
-        #self.I48 = PhotoImage(file = 'Graphics\.png')# V
-        #self.I49 = PhotoImage(file = 'Graphics\.png')# W
-        #self.I50 = PhotoImage(file = 'Graphics\.png')# X
-        #self.I51 = PhotoImage(file = 'Graphics\.png')# Y
-        #self.I52 = PhotoImage(file = 'Graphics\.png')# Z
+        self.MousePosition = ()
+        self.cursorimage = PhotoImage(file = 'assets\cursor.png')
+        self.cursorimageRED = PhotoImage(file = 'assets\cursorred.png')
+        self.stoneimage = PhotoImage(file = 'assets\Stone.png')
+        self.grassimage1 = PhotoImage(file = 'assets\Grass1.png')
+        self.grassimage2 = PhotoImage(file = 'assets\Grass2.png')
+        self.waterimage1 = PhotoImage(file = 'assets\Water1.png')
+        self.waterimage2 = PhotoImage(file = 'assets\Water2.png')
+        self.flowerimage = PhotoImage(file = 'assets\Flower.png')
+        self.stumpimage = [[PhotoImage(file = 'assets\TLStump.png'),
+                           PhotoImage(file = 'assets\BLStump.png')],
+                           [PhotoImage(file = 'assets\TRStump.png'),
+                           PhotoImage(file = 'assets\BRStump.png')]]
+        self.I1 = PhotoImage(file = 'assets\GrassCliffN.png') #a
+        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')
+        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')
+        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')
+        self.I4 = PhotoImage(file = 'assets\WaterN.png')
+        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')
+        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')
+        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')
+        self.I8 = PhotoImage(file = 'assets\WaterCliffNE.png')
+        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')
+        self.I10 = PhotoImage(file = 'assets\WaterNE.png')
+        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')
+        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')
+        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')
+        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')
+        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')
+        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png')
+        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png')
+        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png')
+        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png')
+        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png')        
+        self.I21 = PhotoImage(file = 'assets\CliffTopW.png')
+        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png')
+        self.I23 = PhotoImage(file = 'assets\WaterW.png')
+        self.I24 = PhotoImage(file = 'assets\GrassCliffSW.png')
+        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png')  
+        self.I26 = PhotoImage(file = 'assets\GrassSW.png')         
+        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') 
+        self.I28 = PhotoImage(file = 'assets\WaterSW.png') 
+        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') 
+        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png')
+        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') 
+        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')
+        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')
+        self.I34 = PhotoImage(file = 'assets\WaterS.png')
+        self.I35 = PhotoImage(file = 'assets\GrassSE.png')
+        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')
+        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')
+        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')
+        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')
+        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')
+        #self.I41 = PhotoImage(file = 'assets\.png')# O
+        #self.I42 = PhotoImage(file = 'assets\.png')# P
+        #self.I43 = PhotoImage(file = 'assets\.png')# Q
+        #self.I44 = PhotoImage(file = 'assets\.png')# R
+        #self.I45 = PhotoImage(file = 'assets\.png')# S
+        #self.I46 = PhotoImage(file = 'assets\.png')# T
+        #self.I47 = PhotoImage(file = 'assets\.png')# U
+        #self.I48 = PhotoImage(file = 'assets\.png')# V
+        #self.I49 = PhotoImage(file = 'assets\.png')# W
+        #self.I50 = PhotoImage(file = 'assets\.png')# X
+        #self.I51 = PhotoImage(file = 'assets\.png')# Y
+        #self.I52 = PhotoImage(file = 'assets\.png')# Z
+
+    def MapDataCoords(self,gridid): #pass grid coords. NOT canvas coords
+        x,y = gridid
+        p,q = self.screenlocation
+        gridid = (x+p,y+q)
+
+        return gridid
 
     def ShowCursor(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
+        x=x//16
+        y=y//16
+        gridid = self.MapDataCoords((x,y))
+        
         
         self.canvas.delete(self.CursorSquare)
-        if self.MapData[(x//16,y//16)] == '1':
-            colour = 'White'
+        
+        if self.MapData[gridid] == '1':
+            Image = self.cursorimage
         else:
-            colour = 'Red'
-            
-        self.CursorSquare = self.canvas.create_rectangle(x+2,y+2,x+18,y+18,fill = '',
-                                                         outline = colour, width = 2)
+            Image = self.cursorimageRED
 
+        x=x*16
+        y=y*16
+            
+        self.CursorSquare = self.canvas.create_image(x+2,y+2,anchor = 'nw',image = Image)
+        
     def SpawnCharacter(self,location):
         x,y = location
         self.Player.GridLocation = (x,y)
         x=x*16
         y=y*16
-        print(x,y)
         self.Player.PlayerLocation = (x,y)
         self.Player.PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
 
@@ -108,13 +122,39 @@ class squaregrid:
         if self.Player.direction == 'down': movam = (0,25)
 
         self.screenlocation = (addcords(self.screenlocation,movam))
+        
         p = self.screenlocation[0] 
         r = self.screenlocation[1]
+        
         for s in range (0,40):
             for q in range (0,25):
                 if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
 
-        #================= Search Algorithm
+        x,y = self.Player.GridLocation
+        
+        if self.Player.direction == 'right':
+            self.Player.GridLocation = (0,y)
+        if self.Player.direction == 'left':
+            self.Player.GridLocation = (self.screenwidth-1,y)
+        if self.Player.direction == 'up':
+            self.Player.GridLocation = (x,self.screenheight-1)
+        if self.Player.direction == 'down':
+            self.Player.GridLocation = (x,1)
+
+        x,y = self.Player.GridLocation
+        
+        x=x*16
+        y=y*16
+
+        self.Player.PlayerLocation = (x,y)
+        self.Player.NextTile = (0,0)
+        self.Player.HasObjective = False
+    
+       
+        
+        self.Player.PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
+
+    #================= Search Algorithm
     '''
     This is the search alogorith which is implimented to find the path which the robot follows to the landmarks.
     This is basically a breadth first search with a early exit.
@@ -155,6 +195,25 @@ class squaregrid:
             path.put(current)
         return path
 
+    def neighbors(self,gridid):
+        (x,y) = gridid
+        results = [(x+1, y), (x, y-1), (x-1, y), (x, y+1)]
+        if (x + y) % 2 == 0: results.reverse() # aesthetics
+        
+        results = filter(self.in_bounds,results)
+        results = filter(self.passable,results)
+        
+        return results
+
+    def passable(self, gridid):
+        x,y = gridid
+        gridid = self.MapDataCoords(gridid)
+        return self.MapData[gridid] == '1' 
+
+    def in_bounds(self, gridid):
+        x,y = gridid
+        return 0 <= x < self.screenwidth and 0 <= y < self.screenheight
+
     def FindPlayerPath(self,x,y):
         MovementGrid = self.FindPath(self.Player.GridLocation,(x,y))
         
@@ -162,7 +221,21 @@ class squaregrid:
         self.Player.HasObjective = True
         CPath.reverse()
         self.Player.Path = CPath
+
+    def CheckScreenEdge(self):
+        x,y = self.Player.GridLocation
         
+        if x == 0 and self.Player.direction == 'left':
+            self.MoveScreen()
+            
+        if x == self.screenwidth-1 and self.Player.direction == 'right':
+            self.MoveScreen()
+
+        if y == 0 and self.Player.direction == 'up':
+            self.MoveScreen()
+            
+        if y == self.screenheight-1 and self.Player.direction == 'down':
+            self.MoveScreen() 
 
     def Click(self,event):
         x=round_down(event.x,16)
@@ -170,11 +243,22 @@ class squaregrid:
 
         x=x//16
         y=y//16
-        print(x,y)
-        if self.MapData[(x,y)] == '1':
+        
+        gridid = self.MapDataCoords((x,y))
+        
+        if self.MapData[gridid] == '1':
             self.FindPlayerPath(x,y)
 
-    def Key(self,event):
+    def LeftKey(self,event):
+        pass        
+
+    def RightKey(self,event):
+        pass
+
+    def UpKey(self,event):
+        pass
+
+    def DownKey(self,event):
         pass            
         
     def drawgrid(self):
@@ -184,7 +268,7 @@ class squaregrid:
 
         for s in range (0,40):
             for q in range (0,25):
-                if ( r+q,p+s) in self.MapData: self.drawtile((s,q),self.MapData[(p+s, r+q)])
+                if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
 
     def drawtile(self,gridid,TType):
         
@@ -236,7 +320,7 @@ class squaregrid:
         if TType == 'w': self.canvas.create_image(x,y,anchor="nw",image=self.I23)
         if TType == 'x': self.canvas.create_image(x,y,anchor="nw",image=self.I24)
         if TType == 'y': self.canvas.create_image(x,y,anchor="nw",image=self.I25)
-        if TType == 'z': cself.anvas.create_image(x,y,anchor="nw",image=self.I26)
+        if TType == 'z': self.canvas.create_image(x,y,anchor="nw",image=self.I26)
         if TType == 'A': self.canvas.create_image(x,y,anchor="nw",image=self.I27)
         if TType == 'B': self.canvas.create_image(x,y,anchor="nw",image=self.I28)
         if TType == 'C': self.canvas.create_image(x,y,anchor="nw",image=self.I29)
@@ -255,7 +339,7 @@ class squaregrid:
         #if TType == 'P': self.canvas.create_image(x,y,anchor="nw",image=self.I42)
         #if TType == 'Q': self.canvas.create_image(x,y,anchor="nw",image=self.I43)
         #if TType == 'R': self.canvas.create_image(x,y,anchor="nw",image=self.I44)
-        #if TType == 'S': canvas.create_image(x,y,anchor="nw",image=self.I45)
+        #if TType == 'S': self.canvas.create_image(x,y,anchor="nw",image=self.I45)
         #if TType == 'T': canvas.create_image(x,y,anchor="nw",image=self.I46)
         #if TType == 'U': canvas.create_image(x,y,anchor="nw",image=self.I47)
         #if TType == 'V': canvas.create_image(x,y,anchor="nw",image=self.I48)
@@ -264,25 +348,11 @@ class squaregrid:
         #if TType == 'Y': canvas.create_image(x,y,anchor="nw",image=self.I51)
         #if TType == 'Z': canvas.create_image(x,y,anchor="nw",image=self.I52)      
 
-    def neighbors(self,gridid):
-        (x,y) = gridid
-        results = [(x+1, y), (x, y-1), (x-1, y), (x, y+1)]
-        if (x + y) % 2 == 0: results.reverse() # aesthetics
-        
-        #results = filter(self.in_bounds,results)
-        results = filter(self.passable,results)
-        
-        return results
 
-    def passable(self, gridid):
-        return self.MapData[gridid] == '1' 
-
-    def in_bounds(self, gridid):
-        (x, y) = gridid
-        return 0 <= x < self.width and 0 <= y < self.height
 
 def round_down(num, divisor):
     return num - (num%divisor)
+
 def addcords(cord1,cord2):
     x1,y1 = cord1
     x2,y2 = cord2

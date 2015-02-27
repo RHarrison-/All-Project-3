@@ -21,3 +21,6 @@ class Queue: # A wrapper made around the collections library
 
     def reverse(self): #reverses the array
         return self.elements.reverse()
+
+    def clear(self):
+        self.elements.clear()

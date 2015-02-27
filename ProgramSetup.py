@@ -5,7 +5,6 @@ from Worlds import *
 from Functions import *
 from character import *
 
-
 '''
 This is the Initialise function. This is called by the main program and is used to set up the entire
 program. This creates all tkinter objects on the screen, loads the imagaes and creates the class objects
@@ -15,7 +14,7 @@ to be manipulated.
 def Initialise(mapname):
                  
     window = Tk() # creating the window
-
+    window.geometry('+200+300')
     window.title("Virtual Robot"  + mapname) #renaming the window.
     width = 640
     height = 400
@@ -47,16 +46,16 @@ def Initialise(mapname):
 
     window.bind('<Button-1>',World.Click)
     window.bind('<Motion>',World.ShowCursor)
-    window.bind_all('<Key>',World.Key)
-    window.bind_all('<Left>',Player1.LeftKey)
-    window.bind_all('<Right>',Player1.RightKey)
-    window.bind_all('<Up>',Player1.UpKey)
-    window.bind_all('<Down>',Player1.DownKey)
+
+    window.bind_all('<Left>',World.LeftKey)
+    window.bind_all('<Right>',World.RightKey)
+    window.bind_all('<Up>',World.UpKey)
+    window.bind_all('<Down>',World.DownKey)
 
     World.canvas.config(cursor="none")
 
     World.drawgrid() # draws the world.
 
-    World.SpawnCharacter((2,2))
+    World.SpawnCharacter((30,2))
         
     return World,World.canvas

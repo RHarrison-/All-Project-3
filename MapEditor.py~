@@ -20,93 +20,85 @@ class surface():
         self.rotation = 0
         self.screenlocation = (0,0)
         
-        self.grassimage1 = PhotoImage(file = 'assets\Grass1.png')
-        self.grassimage2 = PhotoImage(file = 'assets\Grass2.png')
-        self.waterimage1 = PhotoImage(file = 'assets\Water1.png')
-        self.waterimage2 = PhotoImage(file = 'assets\Water2.png')
-        self.stoneimage = PhotoImage(file = 'assets\Stone.png')
-        self.flowerimage = PhotoImage(file = 'assets\Flower.png')
-        self.stumpimage = [[PhotoImage(file = 'assets\TLStump.png'),
-                           PhotoImage(file = 'assets\BLStump.png')],
-                           [PhotoImage(file = 'assets\TRStump.png'),
-                           PhotoImage(file = 'assets\BRStump.png')]]
+        self.grassimage1 = PhotoImage(file = 'Graphics\Grass1.png')
+        self.grassimage2 = PhotoImage(file = 'Graphics\Grass2.png')
+        self.waterimage1 = PhotoImage(file = 'Graphics\Water1.png')
+        self.waterimage2 = PhotoImage(file = 'Graphics\Water2.png')
+        self.stoneimage = PhotoImage(file = 'Graphics\Stone.png')
+        self.flowerimage = PhotoImage(file = 'Graphics\Flower.png')
+        self.stumpimage = [[PhotoImage(file = 'Graphics\TLStump.png'),
+                           PhotoImage(file = 'Graphics\BLStump.png')],
+                           [PhotoImage(file = 'Graphics\TRStump.png'),
+                           PhotoImage(file = 'Graphics\BRStump.png')]]
 
-        self.I1 = PhotoImage(file = 'assets\GrassCliffN.png')
-        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')
-        self.I4 = PhotoImage(file = 'assets\WaterN.png')
+        self.I1 = PhotoImage(file = 'Graphics\GrassCliffN.png')
+        self.i1 = PhotoImage(file = 'Graphics\TopCliffN.png')
+        self.I2 = PhotoImage(file = 'Graphics\TopCliffN.png')
+        self.I3 = PhotoImage(file = 'Graphics\WaterCliffN.png')
+        self.I4 = PhotoImage(file = 'Graphics\WaterN.png')
         
-        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')
-        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')
-        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')
-        self.I8= PhotoImage(file = 'assets\WaterCliffNE.png')
-        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')
-        self.I10 = PhotoImage(file = 'assets\WaterNE.png')
-        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')
-        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')
+        self.I5 = PhotoImage(file = 'Graphics\GrassCliffNE.png')
+        self.I6 = PhotoImage(file = 'Graphics\TopCliffNE.png')
+        self.I7 = PhotoImage(file = 'Graphics\MiddleCliffNE.png')
+        self.I8= PhotoImage(file = 'Graphics\WaterCliffNE.png')
+        self.I9 = PhotoImage(file = 'Graphics\WaterCLiffNtoNE.png')
+        self.I10 = PhotoImage(file = 'Graphics\WaterNE.png')
+        self.I11 = PhotoImage(file = 'Graphics\WaterOuterNE.png')
+        self.I12 = PhotoImage(file = 'Graphics\WaterOuterNE2.png')
 
-        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')
-        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')
-        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')
+        self.I13 = PhotoImage(file = 'Graphics\TopCliffE.png')
+        self.I14 = PhotoImage(file = 'Graphics\BottomCliffE.png')
+        self.I15 = PhotoImage(file = 'Graphics\WaterCliffE.png')
 
-        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png') #p
-        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png') #q
-        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png') #r
+        self.I16 = PhotoImage(file = 'Graphics\TopCliffNW.png') #p
+        self.I17 = PhotoImage(file = 'Graphics\CliffMiddleNW.png') #q
+        self.I18 = PhotoImage(file = 'Graphics\CliffBottomNW.png') #r
 
-        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png') #s
-        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png') #t
+        self.I19 = PhotoImage(file = 'Graphics\CliffGrassNW.png') #s
+        self.I20 = PhotoImage(file = 'Graphics\WaterCliffNW.png') #t
         
-        self.I21 = PhotoImage(file = 'assets\CliffTopW.png') #u
-        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png') #v
-        self.I23 = PhotoImage(file = 'assets\WaterW.png') #w
-        self.I24= PhotoImage(file = 'assets\GrassCliffSW.png') #x
+        self.I21 = PhotoImage(file = 'Graphics\CliffTopW.png') #u
+        self.I22 = PhotoImage(file = 'Graphics\MiddleCliffW.png') #v
+        self.I23 = PhotoImage(file = 'Graphics\WaterW.png') #w
+        self.I24= PhotoImage(file = 'Graphics\GrassCliffSW.png') #x
 
-        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png') #y 
-        self.I26 = PhotoImage(file = 'assets\GrassSW.png') #z
+        self.I25 = PhotoImage(file = 'Graphics\TopCliffSW.png') #y 
+        self.I26 = PhotoImage(file = 'Graphics\GrassSW.png') #z
         
-        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') #A 
-        self.I28 = PhotoImage(file = 'assets\WaterSW.png') #B
-        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') #C 
-        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png') #D
-        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') #E 
-        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')# F
-        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')# G
-        self.I34 = PhotoImage(file = 'assets\WaterS.png')# H
-        self.I35 = PhotoImage(file = 'assets\GrassSE.png')# I
-        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')# J
-        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')# K
-        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')# L
-        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')# M
-        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')# N
-        self.I41 = PhotoImage(file = 'assets\Tree1.png')# O
-        self.I42 = PhotoImage(file = 'assets\Tree2.png')# P
-        self.I43 = PhotoImage(file = 'assets\Tree3.png')# Q
-        self.I44 = PhotoImage(file = 'assets\Tree4.png')# R
-        self.I45 = PhotoImage(file = 'assets\Tree5.png')# S
-        self.I46 = PhotoImage(file = 'assets\Tree6.png')# T
-        self.I47 = PhotoImage(file = 'assets\Tree7.png')# U
-        self.I48 = PhotoImage(file = 'assets\Tree8.png')# V
-        self.I49 = PhotoImage(file = 'assets\Tree9.png')# W
-        self.I50 = PhotoImage(file = 'assets\Tree10.png')# X
-        self.I51 = PhotoImage(file = 'assets\Tree11.png')# Y
-        self.I52 = PhotoImage(file = 'assets\Tree12.png')#Z
-        self.I53 = PhotoImage(file = 'assets\Tree13.png')#!
-        self.I54 = PhotoImage(file = 'assets\Tree14.png')#"
-        self.I55 = PhotoImage(file = 'assets\Tree15.png')#£
-        self.I56 = PhotoImage(file = 'assets\Tree16.png')#$
-        self.I57 = PhotoImage(file = 'assets\Tree17.png')#%
-        self.I58 = PhotoImage(file = 'assets\Tree18.png')#^
-        self.I59 = PhotoImage(file = 'assets\Tree19.png')#&
-        self.I60 = PhotoImage(file = 'assets\Tree20.png')#*
-        self.I61 = PhotoImage(file = 'assets\HorozontalFence.png')#(
-        self.I62 = PhotoImage(file = 'assets\VerticleFenceLeft.png')#)
-        self.I63 = PhotoImage(file = 'assets\VerticleFenceRight.png')#-
-        self.I64 = PhotoImage(file = 'assets\BottomGrassCliff.png')#_
-        self.I65 = PhotoImage(file = 'assets\GrassGrassCliffSW.png')#=
-        self.I66 = PhotoImage(file = 'assets\GrassGrassCliffSE.png')#+
-        self.I67 = PhotoImage(file = 'assets\StepsLeft.png')#[
-        self.I68 = PhotoImage(file = 'assets\StepsRight.png')#{
+        self.I27 = PhotoImage(file = 'Graphics\BottomCliffSW.png') #A 
+        self.I28 = PhotoImage(file = 'Graphics\WaterSW.png') #B
+        self.I29 = PhotoImage(file = 'Graphics\WaterCornerSW.png') #C 
+        self.I30 = PhotoImage(file = 'Graphics\GrassCliffS.png') #D
+        self.I31 = PhotoImage(file = 'Graphics\TopCliffS.png') #E 
+        self.I32 = PhotoImage(file = 'Graphics\MiddleCliffS.png')# F
+        self.I33 = PhotoImage(file = 'Graphics\BottomCliffS.png')# G
+        self.I34 = PhotoImage(file = 'Graphics\WaterS.png')# H
+        self.I35 = PhotoImage(file = 'Graphics\GrassSE.png')# I
+        self.I36 = PhotoImage(file = 'Graphics\GrassCliffSE.png')# J
+        self.I37 = PhotoImage(file = 'Graphics\TopCliffSE.png')# K
+        self.I38 = PhotoImage(file = 'Graphics\BottomCliffSE.png')# L
+        self.I39 = PhotoImage(file = 'Graphics\WaterCliffSE.png')# M
+        self.I40 = PhotoImage(file = 'Graphics\CornerWaterSE.png')# N
+        self.I41 = PhotoImage(file = 'Graphics\Tree1.png')# O
+        self.I42 = PhotoImage(file = 'Graphics\Tree2.png')# P
+        self.I43 = PhotoImage(file = 'Graphics\Tree3.png')# Q
+        self.I44 = PhotoImage(file = 'Graphics\Tree4.png')# R
+        self.I45 = PhotoImage(file = 'Graphics\Tree5.png')# S
+        self.I46 = PhotoImage(file = 'Graphics\Tree6.png')# T
+        self.I47 = PhotoImage(file = 'Graphics\Tree7.png')# U
+        self.I48 = PhotoImage(file = 'Graphics\Tree8.png')# V
+        self.I49 = PhotoImage(file = 'Graphics\Tree9.png')# W
+        self.I50 = PhotoImage(file = 'Graphics\Tree10.png')# X
+        self.I51 = PhotoImage(file = 'Graphics\Tree11.png')# Y
+        self.I52 = PhotoImage(file = 'Graphics\Tree12.png')#!
+        self.I53 = PhotoImage(file = 'Graphics\Tree13.png')#£
+        self.I54 = PhotoImage(file = 'Graphics\Tree14.png')#$
+        self.I55 = PhotoImage(file = 'Graphics\Tree15.png')#%
+        self.I56 = PhotoImage(file = 'Graphics\Tree16.png')#^
+        self.I57 = PhotoImage(file = 'Graphics\Tree17.png')#^
+        self.I58 = PhotoImage(file = 'Graphics\Tree18.png')#&
+        self.I59 = PhotoImage(file = 'Graphics\Tree19.png')#*
+        self.I60 = PhotoImage(file = 'Graphics\Tree20.png')#(
         
                       
         
@@ -295,16 +287,6 @@ class surface():
         if TType == '^': canvas.create_image(x,y,anchor="nw",image=self.I58)
         if TType == '&': canvas.create_image(x,y,anchor="nw",image=self.I59)
         if TType == '*': canvas.create_image(x,y,anchor="nw",image=self.I60)
-        if TType == '(': canvas.create_image(x,y,anchor="nw",image=self.I61)
-        if TType == ')': canvas.create_image(x,y,anchor="nw",image=self.I62)
-        if TType == '-': canvas.create_image(x,y,anchor="nw",image=self.I63)
-        if TType == '_': canvas.create_image(x,y,anchor="nw",image=self.I64)
-        if TType == '=': canvas.create_image(x,y,anchor="nw",image=self.I65)
-        if TType == '+': canvas.create_image(x,y,anchor="nw",image=self.I66)
-        if TType == '[': canvas.create_image(x,y,anchor="nw",image=self.I67)
-        if TType == '{': canvas.create_image(x,y,anchor="nw",image=self.I68)
-
-        
 
         self.MapData[(y//16,x//16)] = self.TType
         
@@ -421,8 +403,8 @@ def addcords(cord1,cord2):
 
 def something():
     surface1 = surface()
-    #surface1.create(40,25)
-    surface1.openfile()
+    surface1.create(40,25)
+    #surface1.openfile()
     print (surface1.MapData[(2,2)])
     surface1.window.mainloop()
     

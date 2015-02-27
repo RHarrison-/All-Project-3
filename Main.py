@@ -1,6 +1,7 @@
 from ProgramSetup import *
 from tkinter import *
 from Functions import *
+from Debug import *
 import os
 
 #========================= Initialisation ============================
@@ -36,10 +37,15 @@ project one. However the actual complexity of the program and the overall design
 is greatly improved.
 '''
 
+Debug1 = DebugWindow(World)
+
 Running = True
 
 while Running == True:        
     if World.Player.HasObjective == True: World.Player.FollowPath()
+    World.CheckScreenEdge()
+    Debug1.update()
+    
     World.canvas.update()
     time.sleep(0.01)
 window.mainloop()
