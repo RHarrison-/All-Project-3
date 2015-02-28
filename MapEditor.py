@@ -398,15 +398,10 @@ class surface():
         self.canvas.bind('<B1-Motion>',self.Click)
         self.canvas_Tiles.bind('<Button-1>',self.TClick)
         self.window.bind_all('<Key>',self.Key)
-        #self.window.bind('<Right>',self.movecamera('right'))
-        #self.window.bind('<Left>',self.movecamera('left'))
-        #self.window.bind('<Up>',self.movecamera('up'))                         
-        #self.window.bind('<Down>',self.movecamera('down'))
-        
-
-        
-
-        #self.canvas_Tiles.create_rectangle(2,2,25,height-1)
+        #self.window.bind('<Right>',)
+        #self.window.bind('<Left>',)
+        #self.window.bind('<Up>',)                         
+        #self.window.bind('<Down>',)
                
 def round_down(num, divisor):
     return num - (num%divisor)
@@ -421,7 +416,7 @@ def addcords(cord1,cord2):
 
 def something():
     surface1 = surface()
-    #surface1.create(40,25)
+    #surface1.create(80,50)
     surface1.openfile()
     print (surface1.MapData[(2,2)])
     surface1.window.mainloop()

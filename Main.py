@@ -44,6 +44,7 @@ Running = True
 while Running == True:        
     if World.Player.HasObjective == True: World.Player.FollowPath()
     World.CheckScreenEdge()
+    World.Animate()
     Debug1.update()
     
     World.canvas.update()

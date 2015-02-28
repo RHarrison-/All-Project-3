@@ -1,7 +1,3 @@
-This is the GitHub for project two by group E1.
-The project must be run in python version 3 other wise it will not load.
+Project 3 for year 1 Computer Science: Coventry University.
 
-To run the program, simply open Project.py, select a size using 1,2,3 keys then press enter. 
-
-Reece Harrison.
-
+Read me to be created --

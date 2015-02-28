@@ -24,3 +24,7 @@ class Queue: # A wrapper made around the collections library
 
     def clear(self):
         self.elements.clear()
+
+    def length(self):
+        return self.elements.count()
+        

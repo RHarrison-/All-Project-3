@@ -14,6 +14,7 @@ class squaregrid:
         self.MousePosition = ()
         self.cursorimage = PhotoImage(file = 'assets\cursor.png')
         self.cursorimageRED = PhotoImage(file = 'assets\cursorred.png')
+        
         self.stoneimage = PhotoImage(file = 'assets\Stone.png')
         self.grassimage1 = PhotoImage(file = 'assets\Grass1.png')
         self.grassimage2 = PhotoImage(file = 'assets\Grass2.png')
@@ -25,60 +26,76 @@ class squaregrid:
                            [PhotoImage(file = 'assets\TRStump.png'),
                            PhotoImage(file = 'assets\BRStump.png')]]
         self.I1 = PhotoImage(file = 'assets\GrassCliffN.png') #a
-        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')
-        self.I4 = PhotoImage(file = 'assets\WaterN.png')
-        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')
-        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')
-        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')
-        self.I8 = PhotoImage(file = 'assets\WaterCliffNE.png')
-        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')
-        self.I10 = PhotoImage(file = 'assets\WaterNE.png')
-        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')
-        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')
-        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')
-        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')
-        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')
-        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png')
-        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png')
-        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png')
-        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png')
-        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png')        
-        self.I21 = PhotoImage(file = 'assets\CliffTopW.png')
-        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png')
-        self.I23 = PhotoImage(file = 'assets\WaterW.png')
-        self.I24 = PhotoImage(file = 'assets\GrassCliffSW.png')
-        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png')  
-        self.I26 = PhotoImage(file = 'assets\GrassSW.png')         
-        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') 
-        self.I28 = PhotoImage(file = 'assets\WaterSW.png') 
-        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') 
-        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png')
-        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') 
-        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')
-        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')
-        self.I34 = PhotoImage(file = 'assets\WaterS.png')
-        self.I35 = PhotoImage(file = 'assets\GrassSE.png')
-        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')
-        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')
-        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')
-        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')
-        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')
-        #self.I41 = PhotoImage(file = 'assets\.png')# O
-        #self.I42 = PhotoImage(file = 'assets\.png')# P
-        #self.I43 = PhotoImage(file = 'assets\.png')# Q
-        #self.I44 = PhotoImage(file = 'assets\.png')# R
-        #self.I45 = PhotoImage(file = 'assets\.png')# S
-        #self.I46 = PhotoImage(file = 'assets\.png')# T
-        #self.I47 = PhotoImage(file = 'assets\.png')# U
-        #self.I48 = PhotoImage(file = 'assets\.png')# V
-        #self.I49 = PhotoImage(file = 'assets\.png')# W
-        #self.I50 = PhotoImage(file = 'assets\.png')# X
-        #self.I51 = PhotoImage(file = 'assets\.png')# Y
-        #self.I52 = PhotoImage(file = 'assets\.png')# Z
+        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')#b
+        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')#c
+        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')#d
+        self.I4 = PhotoImage(file = 'assets\WaterN.png')#e
+        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')#f
+        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')#g
+        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')#h
+        self.I8 = PhotoImage(file = 'assets\WaterCliffNE.png')#i
+        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')#j
+        self.I10 = PhotoImage(file = 'assets\WaterNE.png')#k
+        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')#l
+        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')#m
+        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')#n
+        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')#o
+        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')#p
+        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png')#q
+        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png')#r
+        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png')#s
+        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png')#t
+        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png') #u       
+        self.I21 = PhotoImage(file = 'assets\CliffTopW.png')#v
+        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png')#w
+        self.I23 = PhotoImage(file = 'assets\WaterW.png')#x
+        self.I24 = PhotoImage(file = 'assets\GrassCliffSW.png')#y
+        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png')  #z
+        self.I26 = PhotoImage(file = 'assets\GrassSW.png')      #A
+        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') #B
+        self.I28 = PhotoImage(file = 'assets\WaterSW.png') #C
+        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') #D
+        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png')#E
+        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') #F
+        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')#G
+        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')#H
+        self.I34 = PhotoImage(file = 'assets\WaterS.png')#I
+        self.I35 = PhotoImage(file = 'assets\GrassSE.png')#J
+        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')#K
+        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')#L
+        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')#M
+        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')#N
+        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')#O
+        self.I41 = PhotoImage(file = 'assets\Tree1.png')# O
+        self.I42 = PhotoImage(file = 'assets\Tree2.png')# P
+        self.I43 = PhotoImage(file = 'assets\Tree3.png')# Q
+        self.I44 = PhotoImage(file = 'assets\Tree4.png')# R
+        self.I45 = PhotoImage(file = 'assets\Tree5.png')# S
+        self.I46 = PhotoImage(file = 'assets\Tree6.png')# T
+        self.I47 = PhotoImage(file = 'assets\Tree7.png')# U
+        self.I48 = PhotoImage(file = 'assets\Tree8.png')# V
+        self.I49 = PhotoImage(file = 'assets\Tree9.png')# W
+        self.I50 = PhotoImage(file = 'assets\Tree10.png')# X
+        self.I51 = PhotoImage(file = 'assets\Tree11.png')# Y
+        self.I52 = PhotoImage(file = 'assets\Tree12.png')#Z
+        self.I53 = PhotoImage(file = 'assets\Tree13.png')#!
+        self.I54 = PhotoImage(file = 'assets\Tree14.png')#"
+        self.I55 = PhotoImage(file = 'assets\Tree15.png')#£
+        self.I56 = PhotoImage(file = 'assets\Tree16.png')#$
+        self.I57 = PhotoImage(file = 'assets\Tree17.png')#%
+        self.I58 = PhotoImage(file = 'assets\Tree18.png')#^
+        self.I59 = PhotoImage(file = 'assets\Tree19.png')#&
+        self.I60 = PhotoImage(file = 'assets\Tree20.png')#*
+        self.I61 = PhotoImage(file = 'assets\HorozontalFence.png')#(
+        self.I62 = PhotoImage(file = 'assets\VerticleFenceLeft.png')#)
+        self.I63 = PhotoImage(file = 'assets\VerticleFenceRight.png')#-
+        self.I64 = PhotoImage(file = 'assets\BottomGrassCliff.png')#_
+        self.I65 = PhotoImage(file = 'assets\GrassGrassCliffSW.png')#=
+        self.I66 = PhotoImage(file = 'assets\GrassGrassCliffSE.png')#+
+        self.I67 = PhotoImage(file = 'assets\StepsLeft.png')#[
+        self.I68 = PhotoImage(file = 'assets\StepsRight.png')#{
 
-    def MapDataCoords(self,gridid): #pass grid coords. NOT canvas coords
+    def MapDataCoords(self,gridid): #pass grid coords, not canvas coords.
         x,y = gridid
         p,q = self.screenlocation
         gridid = (x+p,y+q)
@@ -112,6 +129,9 @@ class squaregrid:
         y=y*16
         self.Player.PlayerLocation = (x,y)
         self.Player.PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
+
+    def Animate(self):
+        pass
 
     def MoveScreen(self):
         self.canvas.delete(ALL)
@@ -150,8 +170,6 @@ class squaregrid:
         self.Player.NextTile = (0,0)
         self.Player.HasObjective = False
     
-       
-        
         self.Player.PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
 
     #================= Search Algorithm
@@ -161,6 +179,7 @@ class squaregrid:
     The World is made up of nodes which this algorith the orgonises into a dictionary showing which node are
     accesable from where. 
     '''
+    
     def FindPath(self,startpoint,goal):
         frontier = Queue()
         frontier.put(startpoint)
@@ -214,13 +233,47 @@ class squaregrid:
         x,y = gridid
         return 0 <= x < self.screenwidth and 0 <= y < self.screenheight
 
-    def FindPlayerPath(self,x,y):
-        MovementGrid = self.FindPath(self.Player.GridLocation,(x,y))
+    def FindPlayerPath(self,gridid):
+        MovementGrid = self.FindPath(self.Player.GridLocation,gridid)
         
-        CPath = self.ReconstructPath(MovementGrid,self.Player.GridLocation,(x,y))
-        self.Player.HasObjective = True
+        CPath = self.ReconstructPath(MovementGrid,self.Player.GridLocation,gridid)
         CPath.reverse()
+        self.Player.HasObjective = True
         self.Player.Path = CPath
+
+    def ClosestPath(self,startpoint):
+        MovementGrid = self.FindPath(self.Player.GridLocation,(0,0))
+        self.Player.ObjectiveLocation = (startpoint)
+        
+        frontier = Queue()
+        frontier.put(startpoint)
+        came_from = []
+        x=0
+
+
+        while not frontier.empty():
+            current = frontier.get()
+            
+            if current in MovementGrid:
+                break
+
+            x,y = current
+            
+            neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
+            
+            
+            for next in neighbors:
+                if next not in came_from:
+                    
+                    frontier.put(next)
+                    
+                    came_from.append(current)
+
+        
+                    
+        self.FindPlayerPath(current)
+        
+        
 
     def CheckScreenEdge(self):
         x,y = self.Player.GridLocation
@@ -247,7 +300,20 @@ class squaregrid:
         gridid = self.MapDataCoords((x,y))
         
         if self.MapData[gridid] == '1':
-            self.FindPlayerPath(x,y)
+            self.ClosestPath(gridid)
+            
+
+        if self.MapData[gridid] == '6':
+            self.cut(gridid)
+
+    def cut(self,gridid):
+         self.ClosestPath(gridid)
+         
+         
+        
+
+    def RightClick(self):
+        pass
 
     def LeftKey(self,event):
         pass        
@@ -335,20 +401,34 @@ class squaregrid:
         if TType == 'L': self.canvas.create_image(x,y,anchor="nw",image=self.I38)
         if TType == 'M': self.canvas.create_image(x,y,anchor="nw",image=self.I39)
         if TType == 'N': self.canvas.create_image(x,y,anchor="nw",image=self.I40)
-        #if TType == 'O': self.canvas.create_image(x,y,anchor="nw",image=self.I41)
-        #if TType == 'P': self.canvas.create_image(x,y,anchor="nw",image=self.I42)
-        #if TType == 'Q': self.canvas.create_image(x,y,anchor="nw",image=self.I43)
-        #if TType == 'R': self.canvas.create_image(x,y,anchor="nw",image=self.I44)
-        #if TType == 'S': self.canvas.create_image(x,y,anchor="nw",image=self.I45)
-        #if TType == 'T': canvas.create_image(x,y,anchor="nw",image=self.I46)
-        #if TType == 'U': canvas.create_image(x,y,anchor="nw",image=self.I47)
-        #if TType == 'V': canvas.create_image(x,y,anchor="nw",image=self.I48)
-        #if TType == 'W': canvas.create_image(x,y,anchor="nw",image=self.I49)
-        #if TType == 'X': canvas.create_image(x,y,anchor="nw",image=self.I50)
-        #if TType == 'Y': canvas.create_image(x,y,anchor="nw",image=self.I51)
-        #if TType == 'Z': canvas.create_image(x,y,anchor="nw",image=self.I52)      
-
-
+        if TType == 'O': self.canvas.create_image(x,y,anchor="nw",image=self.I41)
+        if TType == 'P': self.canvas.create_image(x,y,anchor="nw",image=self.I42)
+        if TType == 'Q': self.canvas.create_image(x,y,anchor="nw",image=self.I43)
+        if TType == 'R': self.canvas.create_image(x,y,anchor="nw",image=self.I44)
+        if TType == 'S': self.canvas.create_image(x,y,anchor="nw",image=self.I45)
+        if TType == 'T': self.canvas.create_image(x,y,anchor="nw",image=self.I46)
+        if TType == 'U': self.canvas.create_image(x,y,anchor="nw",image=self.I47)
+        if TType == 'V': self.canvas.create_image(x,y,anchor="nw",image=self.I48)
+        if TType == 'W': self.canvas.create_image(x,y,anchor="nw",image=self.I49)
+        if TType == 'X': self.canvas.create_image(x,y,anchor="nw",image=self.I50)
+        if TType == 'Y': self.canvas.create_image(x,y,anchor="nw",image=self.I51)
+        if TType == 'Z': self.canvas.create_image(x,y,anchor="nw",image=self.I52)
+        if TType == '!': self.canvas.create_image(x,y,anchor="nw",image=self.I53)
+        if TType == '"': self.canvas.create_image(x,y,anchor="nw",image=self.I54)
+        if TType == '£': self.canvas.create_image(x,y,anchor="nw",image=self.I55)
+        if TType == '$': self.canvas.create_image(x,y,anchor="nw",image=self.I56)
+        if TType == '%': self.canvas.create_image(x,y,anchor="nw",image=self.I57)
+        if TType == '^': self.canvas.create_image(x,y,anchor="nw",image=self.I58)
+        if TType == '&': self.canvas.create_image(x,y,anchor="nw",image=self.I59)
+        if TType == '*': self.canvas.create_image(x,y,anchor="nw",image=self.I60)
+        if TType == '(': self.canvas.create_image(x,y,anchor="nw",image=self.I61)
+        if TType == ')': self.canvas.create_image(x,y,anchor="nw",image=self.I62)
+        if TType == '-': self.canvas.create_image(x,y,anchor="nw",image=self.I63)
+        if TType == '_': self.canvas.create_image(x,y,anchor="nw",image=self.I64)
+        if TType == '=': self.canvas.create_image(x,y,anchor="nw",image=self.I65)
+        if TType == '+': self.canvas.create_image(x,y,anchor="nw",image=self.I66)
+        if TType == '[': self.canvas.create_image(x,y,anchor="nw",image=self.I67)
+        if TType == '{': self.canvas.create_image(x,y,anchor="nw",image=self.I68)
 
 def round_down(num, divisor):
     return num - (num%divisor)
@@ -360,4 +440,3 @@ def addcords(cord1,cord2):
     x3,y3 = (x1+x2,y1+y2)
 
     return (x3,y3)
-

@@ -4,11 +4,11 @@ from Queues import *
 class Player:
     def __init__(self,canvas):
         self.direction = 'down'
-        self.PlayerImage = PhotoImage(file = 'Graphics/CharacterStillDown.png')
-        self.DirectionImages = {'down':['Graphics/CharacterStillDown.png','Graphics/CharacterMoveDown1.png','Graphics/CharacterMoveDown2.png'],
-                                'right':['Graphics/CharacterStillRight.png','Graphics/CharacterMoveRight1.png','Graphics/CharacterMoveRight2.png'],
-                                'up':['Graphics/CharacterStillUp.png','Graphics/CharacterMoveUp1.png','Graphics/CharacterMoveUp2.png'],
-                                'left':['Graphics/CharacterStillLeft.png','Graphics/CharacterMoveLeft1.png','Graphics/CharacterMoveLeft2.png']
+        self.PlayerImage = PhotoImage(file = 'assets/CharacterStillDown.png')
+        self.DirectionImages = {'down':['assets/CharacterStillDown.png','assets/CharacterMoveDown1.png','assets/CharacterMoveDown2.png'],
+                                'right':['assets/CharacterStillRight.png','assets/CharacterMoveRight1.png','assets/CharacterMoveRight2.png'],
+                                'up':['assets/CharacterStillUp.png','assets/CharacterMoveUp1.png','assets/CharacterMoveUp2.png'],
+                                'left':['assets/CharacterStillLeft.png','assets/CharacterMoveLeft1.png','assets/CharacterMoveLeft2.png']
                                 }
         
         self.MovementCycle = 1
@@ -24,6 +24,7 @@ class Player:
         self.NextTile = (0,0)
         self.Path = Queue
         self.HasObjective = False
+        self.ObjectiveLocation = (0,0)
         self.size = 16
         self.backupvx = 0
         self.backupvy = 0
@@ -49,6 +50,8 @@ class Player:
                 self.vx = 0
                 self.vy = 0
                 self.HasObjective = False
+                self.PTO()
+                
             else:
                 self.NextTile = self.Path.get()
 
@@ -65,13 +68,26 @@ class Player:
         if self.Cycle == 10: self.Cycle =  0
         if self.Cycle == 5: self.MovementCycle +=1
         if self.MovementCycle == 3:self.MovementCycle = 1
-
+        
         if self.vx == 1: self.direction = 'right'
         if self.vx == -1: self.direction = 'left'
         if self.vy == 1: self.direction = 'down'
         if self.vy == -1: self.direction = 'up'
+        
 
         self.PlayerImage = PhotoImage(file = self.DirectionImages[self.direction][self.MovementCycle])
         self.canvas.itemconfig(self.PlayerSquare,image = self.PlayerImage)
 
-        self.canvas.coords(self.PlayerSquare , x, y) 
+        self.canvas.coords(self.PlayerSquare , x, y)
+
+    def PTO(self):
+        x,y = self.GridLocation
+        p,q = self.ObjectiveLocation
+        
+        x=int(x-p)
+        y=int(y-q)
+        
+        if x>0: self.direction = 'left'
+        if x<0: self.direction = 'right'
+        if y>0: self.direction = 'up'
+        if y<0: self.direction = 'down'
