@@ -1,7 +1,5 @@
 from tkinter import *
 import random
-
-
 import tkinter.filedialog as tkfd
 
 class surface():
@@ -108,9 +106,6 @@ class surface():
         self.I67 = PhotoImage(file = 'assets\StepsLeft.png')#[
         self.I68 = PhotoImage(file = 'assets\StepsRight.png')#{
         
-                      
-        
-
     def openfile(self):
         
         filename = tkfd.askopenfilename()
@@ -127,11 +122,7 @@ class surface():
                     x+=1
                     self.TType = char
                     self.draw(self.canvas,self.TType,x*16,y*16)
-                    
-
-    
-        
-        
+                         
     def movecamera(self,direction):
         self.canvas.delete(ALL)
     
@@ -158,8 +149,6 @@ class surface():
                     if ( r+q,p+s) in self.MapData:
                         self.draw(self.canvas,self.MapData[( r+q,p+s)],s*16,q*16)
                         
-                    
-
         if direction == 'up':
             
             self.screenlocation = (self.screenlocation[0],self.screenlocation[1]-20)
@@ -210,7 +199,6 @@ class surface():
             else:
                self.MapName.write(str(item))
                
-        
     def draw(self,canvas,TType,x,y):
                 
         if TType == '1':
@@ -218,7 +206,7 @@ class surface():
             if rand <95:
                 canvas.create_image(x,y,anchor="nw",image=self.grassimage1)
             elif rand >=95:
-                canvas.create_image(x,y,anchor="nw",image=self.grassimage2)
+                 canvas.create_image(x,y,anchor="nw",image=self.grassimage2)
  
         if TType == '2':
             rand = random.randint(1, 100)
@@ -304,12 +292,8 @@ class surface():
         if TType == '[': canvas.create_image(x,y,anchor="nw",image=self.I67)
         if TType == '{': canvas.create_image(x,y,anchor="nw",image=self.I68)
 
-        
-
         self.MapData[(y//16,x//16)] = self.TType
         
-          
-
     def Click(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
@@ -355,9 +339,6 @@ class surface():
                 self.rotation +=1
                 if self.rotation ==2: self.rotation = 0
 
-            
-                    
-
     def create(self,x,y):
 
         self.x = x
@@ -373,8 +354,6 @@ class surface():
         self.canvas.grid(row = 0,column = 0)
         self.canvas_Tiles.grid(row = 0,column =1,rowspan=2)
 
-        
-        
         q=-1
         with open('TilesforUse.txt','r') as f:
             for line in f:
@@ -405,14 +384,13 @@ class surface():
                
 def round_down(num, divisor):
     return num - (num%divisor)
+
 def addcords(cord1,cord2):
     x1,y1 = cord1
     x2,y2 = cord2
-
     x3,y3 = (x1+x2,y1+y2)
 
     return (x3,y3)
-
 
 def something():
     surface1 = surface()

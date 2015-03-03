@@ -24,13 +24,16 @@ class DebugWindow():
         self.canvas.create_text(150,50,anchor = 'nw',text = self.World.Player.PlayerLocation )
         self.canvas.create_text(30,65,anchor = 'nw',text = 'Grid location   :')
         self.canvas.create_text(150,65,anchor = 'nw',text = self.World.Player.GridLocation )
+        
         self.canvas.create_text(30,80,anchor = 'nw',text = 'vx              :')
         self.canvas.create_text(150,80,anchor = 'nw',text = self.World.Player.vx )
         self.canvas.create_text(30,95,anchor = 'nw',text ='vy              :')
         self.canvas.create_text(150,95,anchor = 'nw',text = self.World.Player.vy )
         self.canvas.create_text(30,110,anchor = 'nw',text ='Has Objective :')
         self.canvas.create_text(150,110,anchor = 'nw',text = self.World.Player.HasObjective )
-        
+
+        self.canvas.create_text(30,125,anchor = 'nw',text ='Objective Location :')
+        self.canvas.create_text(150,125,anchor = 'nw',text = self.World.Player.ObjectiveLocation)        
         
         self.canvas.create_text(30,150,anchor = 'nw',text ='Next Tile :')
         self.canvas.create_text(150,150,anchor = 'nw',text = self.World.Player.NextTile )

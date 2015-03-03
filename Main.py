@@ -20,7 +20,7 @@ choice = input("Enter the map number than press enter")
 print()
 
 choice = int(choice)
-
+ 
 mapname = Maps[choice]
 
 

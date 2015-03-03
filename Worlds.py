@@ -102,13 +102,19 @@ class squaregrid:
 
         return gridid
 
+    def ScreenCoords(self,gridid):
+        x,y = gridid
+        p,q = self.screenlocation
+        gridid = (x-p,y-q)
+
+        return gridid
+
     def ShowCursor(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
         x=x//16
         y=y//16
         gridid = self.MapDataCoords((x,y))
-        
         
         self.canvas.delete(self.CursorSquare)
         
@@ -227,7 +233,7 @@ class squaregrid:
     def passable(self, gridid):
         x,y = gridid
         gridid = self.MapDataCoords(gridid)
-        return self.MapData[gridid] == '1' 
+        return self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{'
 
     def in_bounds(self, gridid):
         x,y = gridid
@@ -242,17 +248,17 @@ class squaregrid:
         self.Player.Path = CPath
 
     def ClosestPath(self,startpoint):
-        MovementGrid = self.FindPath(self.Player.GridLocation,(0,0))
+        MovementGrid = self.FindPath(self.Player.GridLocation,startpoint)
         self.Player.ObjectiveLocation = (startpoint)
-        
         frontier = Queue()
         frontier.put(startpoint)
         came_from = []
         x=0
-
-
+        
         while not frontier.empty():
             current = frontier.get()
+
+            if current not in MovementGrid: print(current)
             
             if current in MovementGrid:
                 break
@@ -260,8 +266,7 @@ class squaregrid:
             x,y = current
             
             neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
-            
-            
+
             for next in neighbors:
                 if next not in came_from:
                     
@@ -269,11 +274,8 @@ class squaregrid:
                     
                     came_from.append(current)
 
-        
                     
-        self.FindPlayerPath(current)
-        
-        
+        self.FindPlayerPath(current)     
 
     def CheckScreenEdge(self):
         x,y = self.Player.GridLocation
@@ -299,18 +301,16 @@ class squaregrid:
         
         gridid = self.MapDataCoords((x,y))
         
+        
         if self.MapData[gridid] == '1':
-            self.ClosestPath(gridid)
+            self.ClosestPath(self.ScreenCoords(gridid))
             
 
-        if self.MapData[gridid] == '6':
-            self.cut(gridid)
+        if self.MapData[gridid] == '8':
+            self.cut(self.ScreenCoords(gridid))
 
     def cut(self,gridid):
          self.ClosestPath(gridid)
-         
-         
-        
 
     def RightClick(self):
         pass
@@ -357,9 +357,11 @@ class squaregrid:
                 self.canvas.create_image(x,y,anchor="nw",image=self.waterimage2)      
 
         if TType == '3': self.canvas.create_image(x,y,anchor="nw",image=self.stoneimage)
-        if TType == '4': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][self.rotation])
-        if TType == '5': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[1][self.rotation])
-        if TType == '6': self.canvas.create_image(x,y,anchor="nw",image=self.flowerimage)
+        if TType == '4': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][0])
+        if TType == '5': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[1][0])
+        if TType == '6': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][1])
+        if TType == '7': self.canvas.create_image(x,y,anchor="nw",image=self.stumpimage[1][1])
+        if TType == '8': self.canvas.create_image(x,y,anchor="nw",image=self.flowerimage)
         
         if TType == 'a': self.canvas.create_image(x,y,anchor="nw",image=self.I1)
         if TType == 'b': self.canvas.create_image(x,y,anchor="nw",image=self.I2)
