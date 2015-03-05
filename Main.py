@@ -41,8 +41,10 @@ Debug1 = DebugWindow(World)
 
 Running = True
 
-while Running == True:        
-    if World.Player.HasObjective == True: World.Player.FollowPath()
+while Running == True:
+    for x in range (len(World.Characters)):
+        if World.Characters[x].HasObjective == True:World.Characters[x].FollowPath()
+                
     World.CheckScreenEdge()
     World.Animate()
     Debug1.update()

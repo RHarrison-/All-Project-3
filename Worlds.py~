@@ -8,10 +8,7 @@ class squaregrid:
         self.screenwidth = 40
         self.screenheight = 25
         self.screenlocation = (0,0)
-        
         self.Characters = []
-        self.Selected_Character = 0
-        
         self.CursorSquare = ''
         self.MapData = {}
         self.MousePosition = ()
@@ -69,17 +66,17 @@ class squaregrid:
         self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')#M
         self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')#N
         self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')#O
-        self.I41 = PhotoImage(file = 'assets\Tree1.png')#O
-        self.I42 = PhotoImage(file = 'assets\Tree2.png')#P
-        self.I43 = PhotoImage(file = 'assets\Tree3.png')#Q
-        self.I44 = PhotoImage(file = 'assets\Tree4.png')#R
-        self.I45 = PhotoImage(file = 'assets\Tree5.png')#S
-        self.I46 = PhotoImage(file = 'assets\Tree6.png')#T
-        self.I47 = PhotoImage(file = 'assets\Tree7.png')#U
-        self.I48 = PhotoImage(file = 'assets\Tree8.png')#V
-        self.I49 = PhotoImage(file = 'assets\Tree9.png')#W
-        self.I50 = PhotoImage(file = 'assets\Tree10.png')#X
-        self.I51 = PhotoImage(file = 'assets\Tree11.png')#Y
+        self.I41 = PhotoImage(file = 'assets\Tree1.png')# O
+        self.I42 = PhotoImage(file = 'assets\Tree2.png')# P
+        self.I43 = PhotoImage(file = 'assets\Tree3.png')# Q
+        self.I44 = PhotoImage(file = 'assets\Tree4.png')# R
+        self.I45 = PhotoImage(file = 'assets\Tree5.png')# S
+        self.I46 = PhotoImage(file = 'assets\Tree6.png')# T
+        self.I47 = PhotoImage(file = 'assets\Tree7.png')# U
+        self.I48 = PhotoImage(file = 'assets\Tree8.png')# V
+        self.I49 = PhotoImage(file = 'assets\Tree9.png')# W
+        self.I50 = PhotoImage(file = 'assets\Tree10.png')# X
+        self.I51 = PhotoImage(file = 'assets\Tree11.png')# Y
         self.I52 = PhotoImage(file = 'assets\Tree12.png')#Z
         self.I53 = PhotoImage(file = 'assets\Tree13.png')#!
         self.I54 = PhotoImage(file = 'assets\Tree14.png')#"
@@ -133,23 +130,23 @@ class squaregrid:
         
     def SpawnCharacter(self,location):
         x,y = location
-        self.Characters.append(Character(self.canvas))
-        self.Characters[len(self.Characters)-1].GridLocation = (x,y)
+        self.Characters.append(Character)
+        self.Character[len(Characters)].GridLocation = (x,y)
         x=x*16
         y=y*16
-        self.Characters[len(self.Characters)-1].PlayerLocation = (x,y)
-        self.Characters[len(self.Characters)-1].PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Characters[len(self.Characters)-1].PlayerImage)
+        self.Character.PlayerLocation = (x,y)
+        self.Character.PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
 
     def Animate(self):
         pass
 
-    def MoveScreen(self,c):
+    def MoveScreen(self):
         self.canvas.delete(ALL)
         moveam = 0
-        if self.Characters[c].direction == 'right': movam = (40,0)
-        if self.Characters[c].direction == 'left': movam = (-40,0)
-        if self.Characters[c].direction == 'up': movam = (0,-25)
-        if self.Characters[c].direction == 'down': movam = (0,25)
+        if self.Characters[0].direction == 'right': movam = (40,0)
+        if self.Characters[0].direction == 'left': movam = (-40,0)
+        if self.Characters[0].direction == 'up': movam = (0,-25)
+        if self.Characters[0].direction == 'down': movam = (0,25)
 
         self.screenlocation = (addcords(self.screenlocation,movam))
         
@@ -160,31 +157,27 @@ class squaregrid:
             for q in range (0,25):
                 if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
 
-        x,y = self.Characters[0].GridLocation
+        x,y = self.Player.GridLocation
         
-        if self.Characters[c].direction == 'right':
-            self.Characters[c].GridLocation = (0,y)
-        if self.Characters[c].direction == 'left':
-            self.Characters[c].GridLocation = (self.screenwidth-1,y)
-        if self.Characters[c].direction == 'up':
-            self.Characters[c].GridLocation = (x,self.screenheight-1)
-        if self.Characters[c].direction == 'down':
-            self.Characters[c].GridLocation = (x,1)
+        if self.Characters[0].direction == 'right':
+            self.Characters[0].GridLocation = (0,y)
+        if self.Characters[0].direction == 'left':
+            self.Characters[0].GridLocation = (self.screenwidth-1,y)
+        if self.Characters[0].direction == 'up':
+            self.Characters[0].GridLocation = (x,self.screenheight-1)
+        if self.Characters[0].direction == 'down':
+            self.Characters[0].GridLocation = (x,1)
 
-        x,y = self.Characters[c].GridLocation
+        x,y = self.Characters[0].GridLocation
         
         x=x*16
         y=y*16
 
-        self.Characters[c].PlayerLocation = (x,y)
-        self.Characters[c].NextTile = (0,0)
-        self.Characters[c].HasObjective = False
+        self.Characters[0].PlayerLocation = (x,y)
+        self.Characters[0].NextTile = (0,0)
+        self.Characters[0].HasObjective = False
     
-        self.Characters[c].PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Characters[0].PlayerImage)
-
-        
-                        
-                        
+        self.Characters[0].PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Player.PlayerImage)
 
     #================= Search Algorithm
     '''
@@ -235,7 +228,6 @@ class squaregrid:
         
         results = filter(self.in_bounds,results)
         results = filter(self.passable,results)
-
         
         return results
 
@@ -249,16 +241,16 @@ class squaregrid:
         return 0 <= x < self.screenwidth and 0 <= y < self.screenheight
 
     def FindPlayerPath(self,gridid):
-        MovementGrid = self.FindPath(self.Characters[self.Selected_Character].GridLocation,gridid)
+        MovementGrid = self.FindPath(self.Characters[0].GridLocation,gridid)
         
-        CPath = self.ReconstructPath(MovementGrid,self.Characters[self.Selected_Character].GridLocation,gridid)
+        CPath = self.ReconstructPath(MovementGrid,self.Characters[0].GridLocation,gridid)
         CPath.reverse()
-        self.Characters[self.Selected_Character].HasObjective = True
-        self.Characters[self.Selected_Character].Path = CPath
+        self.Characters[0].HasObjective = True
+        self.Characters[0].Path = CPath
 
     def ClosestPath(self,startpoint):
-        MovementGrid = self.FindPath(self.Characters[self.Selected_Character].GridLocation,startpoint)
-        self.Characters[self.Selected_Character].ObjectiveLocation = (startpoint)
+        MovementGrid = self.FindPath(self.Characters[0].GridLocation,startpoint)
+        self.Characters[0].ObjectiveLocation = (startpoint)
         frontier = Queue()
         frontier.put(startpoint)
         came_from = []
@@ -266,32 +258,38 @@ class squaregrid:
         
         while not frontier.empty():
             current = frontier.get()
+            
             if current in MovementGrid:
                 break
+
             x,y = current
+            
             neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
+
             for next in neighbors:
                 if next not in came_from:
+                    
                     frontier.put(next)
+                    
                     came_from.append(current)
 
                     
         self.FindPlayerPath(current)     
 
     def CheckScreenEdge(self):
-        for c in range(len(self.Characters)):
-            x,y = self.Characters[c].GridLocation
-            
-            if x == 0 and self.Characters[c].direction == 'left':
-                self.MoveScreen(c) 
-            if x == self.screenwidth-1 and self.Characters[c].direction == 'right':
-                self.MoveScreen(c)
-            if y == 0 and self.Characters[c].direction == 'up':
-                self.MoveScreen(c)
-            if y == self.screenheight-1 and self.Characters[c].direction == 'down':
-                self.MoveScreen(c)
-
+        x,y = self.Player.GridLocation
         
+        if x == 0 and self.Player.direction == 'left':
+            self.MoveScreen()
+            
+        if x == self.screenwidth-1 and self.Player.direction == 'right':
+            self.MoveScreen()
+
+        if y == 0 and self.Player.direction == 'up':
+            self.MoveScreen()
+            
+        if y == self.screenheight-1 and self.Player.direction == 'down':
+            self.MoveScreen() 
 
     def Click(self,event):
         x=round_down(event.x,16)
@@ -304,34 +302,11 @@ class squaregrid:
         
         gridid = self.MapDataCoords((x,y))
         
-        self.ClosestPath(self.ScreenCoords(gridid))
-
-        
+        self.ClosestPath(self.ScreenCoords(gridid))                    
 
     def cut(self,gridid):
          self.ClosestPath(gridid)
 
-    def Key(self,event):
-         if event.char == 'z':
-             self.Selected_Character +=1
-             if self.Selected_Character == 2:
-                 self.Selected_Character = 0
-             print('2 pressed')
-
-    def MouseWheel(self,event): #Changing between characters.
-        if event.delta == 120:
-             self.Selected_Character -=1
-             print('SW up')
-        if event.delta == -120:
-             self.Selected_Character +=1
-             print('SW down')
-
-        if self.Selected_Character == len(self.Characters):
-             self.Selected_Character = 0
-
-        if self.Selected_Character == -1:
-            self.Selected_Character = len(self.Characters)-1
-                
     def RightClick(self):
         pass
 

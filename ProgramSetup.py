@@ -30,8 +30,6 @@ def Initialise(mapname):
     canvasRobotInfo.create_rectangle(2,2,width-13,98)
 
     World = squaregrid(canvasMain)
-    Player1 = Player(canvasMain)
-    World.Player = Player1
 
     y = -1
     with open('Maps/' + mapname,'r') as f:
@@ -46,16 +44,21 @@ def Initialise(mapname):
 
     window.bind('<Button-1>',World.Click)
     window.bind('<Motion>',World.ShowCursor)
+    window.bind('<Key>',World.Key)
+    window.bind('<MouseWheel>', World.MouseWheel)
 
     window.bind_all('<Left>',World.LeftKey)
     window.bind_all('<Right>',World.RightKey)
     window.bind_all('<Up>',World.UpKey)
     window.bind_all('<Down>',World.DownKey)
+    window.bind("<MouseWheel>", World.MouseWheel)
 
     World.canvas.config(cursor="none")
 
     World.drawgrid() # draws the world.
 
-    World.SpawnCharacter((30,2))
+    World.SpawnCharacter((37,14))
+    World.SpawnCharacter((10,2))
+    World.SpawnCharacter((14,5))
         
     return World,World.canvas

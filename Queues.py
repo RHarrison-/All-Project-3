@@ -17,7 +17,8 @@ class Queue: # A wrapper made around the collections library
         self.elements.append(x)
 
     def get(self): #removes and returns a element from the left sode of the array.
-        return self.elements.popleft()
+        if len(self.elements) != 0:
+            return self.elements.popleft()
 
     def reverse(self): #reverses the array
         return self.elements.reverse()

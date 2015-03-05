@@ -1,7 +1,7 @@
 from tkinter import *
 from Queues import *
 
-class Player:
+class Character:
     def __init__(self,canvas):
         self.direction = 'down'
         self.PlayerImage = PhotoImage(file = 'assets/CharacterStillDown.png')
@@ -28,6 +28,7 @@ class Player:
         self.size = 16
         self.backupvx = 0
         self.backupvy = 0
+        self.queue = Queue
 
     #=================================
 
