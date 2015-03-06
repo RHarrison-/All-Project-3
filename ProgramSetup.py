@@ -57,8 +57,8 @@ def Initialise(mapname):
 
     World.drawgrid() # draws the world.
 
-    World.SpawnCharacter((37,14))
-    World.SpawnCharacter((10,2))
-    World.SpawnCharacter((14,5))
+    World.SpawnCharacter((37,14),Link)
+    World.SpawnCharacter((10,2),Zelda)
+    
         
     return World,World.canvas

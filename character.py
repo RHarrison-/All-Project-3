@@ -4,12 +4,6 @@ from Queues import *
 class Character:
     def __init__(self,canvas):
         self.direction = 'down'
-        self.PlayerImage = PhotoImage(file = 'assets/CharacterStillDown.png')
-        self.DirectionImages = {'down':['assets/CharacterStillDown.png','assets/CharacterMoveDown1.png','assets/CharacterMoveDown2.png'],
-                                'right':['assets/CharacterStillRight.png','assets/CharacterMoveRight1.png','assets/CharacterMoveRight2.png'],
-                                'up':['assets/CharacterStillUp.png','assets/CharacterMoveUp1.png','assets/CharacterMoveUp2.png'],
-                                'left':['assets/CharacterStillLeft.png','assets/CharacterMoveLeft1.png','assets/CharacterMoveLeft2.png']
-                                }
         
         self.MovementCycle = 1
         self.Cycle = 0
@@ -87,8 +81,28 @@ class Character:
         
         x=int(x-p)
         y=int(y-q)
-        
+            
         if x>0: self.direction = 'left'
         if x<0: self.direction = 'right'
         if y>0: self.direction = 'up'
         if y<0: self.direction = 'down'
+
+class Link(Character):
+    def __init__(self,canvas):
+        Character.__init__(self,canvas)
+        self.PlayerImage = PhotoImage(file = 'assets/LinkStillDown.png')
+        self.DirectionImages = {'down':['assets/LinkStillDown.png','assets/LinkMoveDown1.png','assets/LinkMoveDown2.png'],
+                                'right':['assets/LinkStillRight.png','assets/LinkMoveRight1.png','assets/LinkMoveRight2.png'],
+                                'up':['assets/LinkStillUp.png','assets/LinkMoveUp1.png','assets/LinkMoveUp2.png'],
+                                'left':['assets/LinkStillLeft.png','assets/LinkMoveLeft1.png','assets/LinkMoveLeft2.png']}
+
+class Zelda(Character):
+    def __init__(self,canvas):
+        Character.__init__(self,canvas)
+        self.PlayerImage = PhotoImage(file = 'assets/ZeldaMoveDown1.png')
+        self.DirectionImages = {'down':['assets/ZeldaMoveDown1.png','assets/ZeldaMoveDown1.png','assets/ZeldaMoveDown2.png'],
+                                'right':['assets/ZeldaMoveRight1.png','assets/ZeldaMoveRight1.png','assets/ZeldaMoveRight2.png'],
+                                'up':['assets/ZeldaMoveUp1.png','assets/ZeldaMoveUp1.png','assets/ZeldaMoveUp2.png'],
+                                'left':['assets/ZeldaMoveLeft1.png','assets/ZeldaMoveLeft1.png','assets/ZeldaMoveLeft2.png']}
+
+

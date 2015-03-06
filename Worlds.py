@@ -131,9 +131,9 @@ class squaregrid:
             
         self.CursorSquare = self.canvas.create_image(x+2,y+2,anchor = 'nw',image = Image)
         
-    def SpawnCharacter(self,location):
+    def SpawnCharacter(self,location,character):
         x,y = location
-        self.Characters.append(Character(self.canvas))
+        self.Characters.append(character(self.canvas))
         self.Characters[len(self.Characters)-1].GridLocation = (x,y)
         x=x*16
         y=y*16
@@ -160,31 +160,37 @@ class squaregrid:
             for q in range (0,25):
                 if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
 
-        x,y = self.Characters[0].GridLocation
+        x,y = self.Characters[c].GridLocation
         
         if self.Characters[c].direction == 'right':
             self.Characters[c].GridLocation = (0,y)
+            direction = 'right'
         if self.Characters[c].direction == 'left':
             self.Characters[c].GridLocation = (self.screenwidth-1,y)
+            direction = 'left'
         if self.Characters[c].direction == 'up':
             self.Characters[c].GridLocation = (x,self.screenheight-1)
+            direction = 'up'
         if self.Characters[c].direction == 'down':
             self.Characters[c].GridLocation = (x,1)
+            direction = 'down'
 
-        x,y = self.Characters[c].GridLocation
+        for q in range (0,len(self.Characters)):
+
+            x,y = self.Characters[c].GridLocation
+
+            self.Characters[q].GridLocation = (x,y)
         
-        x=x*16
-        y=y*16
+            x=x*16
+            y=y*16
 
-        self.Characters[c].PlayerLocation = (x,y)
-        self.Characters[c].NextTile = (0,0)
-        self.Characters[c].HasObjective = False
-    
-        self.Characters[c].PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Characters[0].PlayerImage)
-
+            self.Characters[q].PlayerLocation = (x,y)
+            self.Characters[q].NextTile = (0,0)
+            self.Characters[q].HasObjective = False
+            self.Characters[q].direction = direction
         
-                        
-                        
+            self.Characters[q].PlayerSquare = self.canvas.create_image(x,y,anchor = 'nw',image = self.Characters[q].PlayerImage)
+              
 
     #================= Search Algorithm
     '''
