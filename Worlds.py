@@ -1,5 +1,6 @@
 from tkinter import *
 from character import *
+from Functions import *
 import random
 #=================== The World Generation =====================    
 class squaregrid:
@@ -15,6 +16,9 @@ class squaregrid:
         self.CursorSquare = ''
         self.MapData = {}
         self.MousePosition = ()
+
+        self.LandmarkList = []
+        self.TreasureList = []
         self.cursorimage = PhotoImage(file = 'assets\cursor.png')
         self.cursorimageRED = PhotoImage(file = 'assets\cursorred.png')
         
@@ -254,15 +258,15 @@ class squaregrid:
         x,y = gridid
         return 0 <= x < self.screenwidth and 0 <= y < self.screenheight
 
-    def FindPlayerPath(self,gridid):
-        MovementGrid = self.FindPath(self.Characters[self.Selected_Character].GridLocation,gridid)
+    def FindPlayerPath(self,g,gridid):
+        MovementGrid = self.FindPath(self.Characters[g].GridLocation,gridid)
         
-        CPath = self.ReconstructPath(MovementGrid,self.Characters[self.Selected_Character].GridLocation,gridid)
+        CPath = self.ReconstructPath(MovementGrid,self.Characters[g].GridLocation,gridid)
         CPath.reverse()
-        self.Characters[self.Selected_Character].HasObjective = True
-        self.Characters[self.Selected_Character].Path = CPath
+        self.Characters[g].HasObjective = True
+        self.Characters[g].Path = CPath
 
-    def ClosestPath(self,startpoint):
+    def ClosestPath(self,g,startpoint):
         MovementGrid = self.FindPath(self.Characters[self.Selected_Character].GridLocation,startpoint)
         self.Characters[self.Selected_Character].ObjectiveLocation = (startpoint)
         frontier = Queue()
@@ -282,7 +286,7 @@ class squaregrid:
                     came_from.append(current)
 
                     
-        self.FindPlayerPath(current)     
+        self.FindPlayerPath(g,current)     
 
     def CheckScreenEdge(self):
         for c in range(len(self.Characters)):
@@ -298,7 +302,8 @@ class squaregrid:
                 self.MoveScreen(c)
 
         
-
+   
+            
     def Click(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
@@ -312,29 +317,23 @@ class squaregrid:
         
         self.ClosestPath(self.ScreenCoords(gridid))
 
+    def Rclick(self,event):
+        if self.Characters[self.Selected_Character].name == 'Link':
+            pass           
+
+        if self.Characters[self.Selected_Character].name == 'Zelda':
+            pass            
         
-
-    def cut(self,gridid):
-         self.ClosestPath(gridid)
-
     def Key(self,event):
-         if event.char == 'z':
-             self.Selected_Character +=1
-             if self.Selected_Character == 2:
-                 self.Selected_Character = 0
-             print('2 pressed')
+         pass
 
     def MouseWheel(self,event): #Changing between characters.
         if event.delta == 120:
              self.Selected_Character -=1
-             print('SW up')
         if event.delta == -120:
              self.Selected_Character +=1
-             print('SW down')
-
         if self.Selected_Character == len(self.Characters):
              self.Selected_Character = 0
-
         if self.Selected_Character == -1:
             self.Selected_Character = len(self.Characters)-1
                 
@@ -458,6 +457,53 @@ class squaregrid:
         if TType == '[': self.canvas.create_image(x,y,anchor="nw",image=self.I67)
         if TType == '{': self.canvas.create_image(x,y,anchor="nw",image=self.I68)
 
+
+    def FindNewObjective(self,g):
+        x1,y1 = self.Characters[g].GridLocation
+        shortestdistance = 999
+        closest = 0
+           
+        '''
+        All of this code is used to determine the optimal landmark in which the robot should move towards.
+        once the target is aquired, the bottom three lines of code call the methods to find and constuct a new
+        path for the robot.        
+        '''
+       
+        for c in range (0,len(self.LandmarkList)):
+            if (x1,y1) == self.LandmarkList[c].location:
+                self.canvas.itemconfig(self.LandmarkList[c].square,outline = 'white')
+                if  self.LandmarkList[c].found == False:
+                    self.LandmarkList[c].found = True
+                    self.Characters[g].Score += 100
+                    if self.LandmarkList[c].Treasure == '':
+                        continue
+                    else:
+                        self.canvas.itemconfig(self.LandmarkList[c].square,fill = self.Characters[g].colour)
+                        self.TreasureList[self.LandmarkList[c].Treasure].Reveal(self.Characters[g].colour)
+                        self.TreasureList[self.LandmarkList[c].Treasure].Found = True
+                        self.Characters[g].Score += 50
+     
+            if self.LandmarkList[c].found == True: continue
+                
+            distance = (self.LandmarkList[c].GetDistance(x1,y1))
+                
+            if distance < shortestdistance:
+                shortestdistance = distance
+                closest = c
+
+        if shortestdistance == 999:
+            x,y = randomvalidcoord(self)
+            self.ObjectiveLocation = (x,y)
+        else:
+            x,y = self.LandmarkList[closest].location
+            self.ObjectiveLocation = (x,y)
+
+        
+        
+        self.ClosestPath(g,(x,y))
+
+        self.Characters[g].HasObjective = True
+        
 def round_down(num, divisor):
     return num - (num%divisor)
 

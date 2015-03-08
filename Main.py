@@ -1,3 +1,4 @@
+
 from ProgramSetup import *
 from tkinter import *
 from Functions import *
@@ -43,6 +44,7 @@ Running = True
 
 while Running == True:
     for x in range (len(World.Characters)):
+        if World.Characters[x].HasObjective == False: World.FindNewObjective(x)
         if World.Characters[x].HasObjective == True:World.Characters[x].FollowPath()
                 
     World.CheckScreenEdge()

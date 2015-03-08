@@ -4,6 +4,8 @@ from math import sqrt
 from Worlds import *
 from Functions import *
 from character import *
+from Treasures import *
+from Landmarks import *
 
 '''
 This is the Initialise function. This is called by the main program and is used to set up the entire
@@ -42,7 +44,63 @@ def Initialise(mapname):
                 World.width = len(line)
                 World.height = y
 
+    World.drawgrid() # draws the world.
+
+    ################################################################################
+
+   
+    RobotList = []
+    LandmarkList = []
+    TreasureList = []
+    Treasures = [['Master Sword', 'The Master Sword is a fucking cool Sword'],
+                 ['Jade drogon', ' A dragon which is Jade'],
+                 ['Really cool thing', 'This thing is really cool'],
+                 ['Another really cool thing','This thing is also really cool'],
+                 ['Reeces seal of approval','You lucky person'],
+                 ['FREE BEER','Its Beer. And its Free!']]
+                 #['1','1'],
+                 #['2','2'],
+                 #['3','3'],
+                 #['4','4'],
+                 #['5','5']]
+    
+    
+    for x in range (0,6): #Creating all the Landmarks
+        x1,y1 = randomvalidcoord(World)
+        LandmarkList.append(Landmark(x,x1,y1,canvasMain))
+
+    TrA = len(Treasures)
+
+    for x in range (0,TrA): #Uses information from the Treasure list to create Treasure Objects.
+        Tr = Treasures.pop(0)
+        TreasureList.append(Treasure(Tr[0],Tr[1],TreasureList,canvasTreasures))
+        
+    TL = 0
+
+    while TL != TrA:
+        TL = 0
+        randLand= random.randint(0,len(LandmarkList)-1) # randomly assigning treasures to landmarks
+         
+        if LandmarkList[randLand].Treasure == '':
+            for x in range (0,len(TreasureList)):
+                if TreasureList[x].used == False: 
+                    LandmarkList[randLand].Treasure = x
+                    TreasureList[x].used = True
+                    break
+            
+        for x in range (0,len(TreasureList)):
+           if TreasureList[x].used == True:
+               TL +=1
+
+    World.LandmarkList = LandmarkList
+    World.TreasureList = TreasureList
+
+                
+    ####################################################################################
+    
     window.bind('<Button-1>',World.Click)
+    window.bind('<Button-3>',World.Rclick)
+
     window.bind('<Motion>',World.ShowCursor)
     window.bind('<Key>',World.Key)
     window.bind('<MouseWheel>', World.MouseWheel)
@@ -55,7 +113,7 @@ def Initialise(mapname):
 
     World.canvas.config(cursor="none")
 
-    World.drawgrid() # draws the world.
+    
 
     World.SpawnCharacter((37,14),Link)
     World.SpawnCharacter((10,2),Zelda)

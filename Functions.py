@@ -10,10 +10,8 @@ occupied by a traffic light.
 '''
 
 def randomvalidcoord(World): #Finds a random coordinate which can be used(not a wall)
-    print(World.width)
-    print(World.height)
-    x1 = random.randint(1,World.width)
-    y1 = random.randint(1,World.height)
+    x1 = random.randint(1,35)
+    y1 = random.randint(1,23)
         
     if World.MapData[(x1,y1)] == '1':
         return (x1,y1)
