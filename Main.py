@@ -2,6 +2,8 @@ from ProgramSetup import *
 from tkinter import *
 from Functions import *
 from Debug import *
+import pygame
+import winsound
 import os
 
 #========================= Initialisation ============================
@@ -29,26 +31,17 @@ mapname = Maps[choice]
 
 #============================== Main =================================
 
-'''
-This is the main body of the program. Any items needed during the Main loop
-are retured and stored when "Initialise" is called. The actual running of the
-program is pretty basic, and the main loop looks very simular is design too
-project one. However the actual complexity of the program and the overall design
-is greatly improved.
-'''
-
 Debug1 = DebugWindow(World)
-
+pygame.mixer.pre_init(44100, -16, 1, 512)
+pygame.init()
+Music = pygame.mixer.Sound('assets\KokiriForest.wav').play()
+Music.set_volume(0.05)
 Running = True
 
 while Running == True:
-    for x in range (len(World.Characters)):
-        if World.Characters[x].HasObjective == True:World.Characters[x].FollowPath()
-                
+    polling(World)
     World.CheckScreenEdge()
-    World.Animate()
     Debug1.update()
-    
     World.canvas.update()
     time.sleep(0.01)
 window.mainloop()

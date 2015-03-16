@@ -1,19 +1,24 @@
 from tkinter import *
 from character import *
+from Functions import *
 import random
 #=================== The World Generation =====================    
 class squaregrid:
-    def __init__ (self,canvas):
+    def __init__ (self,canvas,canvas2):
         self.canvas = canvas
+        self.canvas2 = canvas2
         self.screenwidth = 40
         self.screenheight = 25
         self.screenlocation = (0,0)
         
         self.Characters = []
+        self.SwitchWalls = []
         self.Selected_Character = 0
+        self.SelectedPlayerImage = ''
         
         self.CursorSquare = ''
         self.MapData = {}
+        self.rupees = []
         self.MousePosition = ()
         self.cursorimage = PhotoImage(file = 'assets\cursor.png')
         self.cursorimageRED = PhotoImage(file = 'assets\cursorred.png')
@@ -97,6 +102,12 @@ class squaregrid:
         self.I66 = PhotoImage(file = 'assets\GrassGrassCliffSE.png')#+
         self.I67 = PhotoImage(file = 'assets\StepsLeft.png')#[
         self.I68 = PhotoImage(file = 'assets\StepsRight.png')#{
+        self.I69 = PhotoImage(file = 'assets\PressurePlate.png')#}
+        self.I70 = PhotoImage(file = 'assets\WallUP.png')#]
+        self.I71 = PhotoImage(file = 'assets\WallDOWN.png')#;
+        self.I72 = PhotoImage(file = 'assets/rupeeRED.png')#:
+        self.I73 = PhotoImage(file = 'assets/rupeeBLUE.png')#@
+        self.I74 = PhotoImage(file = 'assets/rupeeGREEN.png')##
 
     def MapDataCoords(self,gridid): #pass grid coords, not canvas coords.
         x,y = gridid
@@ -129,7 +140,7 @@ class squaregrid:
         x=x*16
         y=y*16
             
-        self.CursorSquare = self.canvas.create_image(x+2,y+2,anchor = 'nw',image = Image)
+        self.CursorSquare = self.canvas.create_image(x,y,anchor = 'nw',image = Image)
         
     def SpawnCharacter(self,location,character):
         x,y = location
@@ -159,6 +170,14 @@ class squaregrid:
         for s in range (0,40):
             for q in range (0,25):
                 if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
+
+        for rupee in self.rupees:
+            if rupee.collected == False:
+                l,k = rupee.location
+                x,y = self.screenlocation
+                if l > x and l < x+40:
+                    if k > y and k < y+25:
+                        rupee.draw()
 
         x,y = self.Characters[c].GridLocation
         
@@ -248,7 +267,8 @@ class squaregrid:
     def passable(self, gridid):
         x,y = gridid
         gridid = self.MapDataCoords(gridid)
-        return self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{'
+        return self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{' or self.MapData[gridid] ==  '}' or self.MapData[gridid] ==  ';' or self.MapData[gridid] ==  ':' or self.MapData[gridid] == '@' or self.MapData[gridid] == '#'
+    
 
     def in_bounds(self, gridid):
         x,y = gridid
@@ -327,16 +347,20 @@ class squaregrid:
     def MouseWheel(self,event): #Changing between characters.
         if event.delta == 120:
              self.Selected_Character -=1
-             print('SW up')
+             
         if event.delta == -120:
              self.Selected_Character +=1
-             print('SW down')
+            
 
         if self.Selected_Character == len(self.Characters):
              self.Selected_Character = 0
 
         if self.Selected_Character == -1:
             self.Selected_Character = len(self.Characters)-1
+
+        self.SelectedPlayerImage = PhotoImage(file= self.Characters[self.Selected_Character].DirectionImages['down'][0])
+        self.canvas2.create_image(8,8,anchor = 'nw', image = self.SelectedPlayerImage)
+        self.canvas2.create_rectangle(4,4,28,28,outline = 'Green', width = 2)
                 
     def RightClick(self):
         pass
@@ -365,8 +389,8 @@ class squaregrid:
     def drawtile(self,gridid,TType):
         
         x,y = gridid        
-        x = (x*16)+2
-        y = (y*16)+2
+        x = (x*16)
+        y = (y*16)
 
         if TType == '1':
              rand = random.randint(1, 100)
@@ -457,6 +481,12 @@ class squaregrid:
         if TType == '+': self.canvas.create_image(x,y,anchor="nw",image=self.I66)
         if TType == '[': self.canvas.create_image(x,y,anchor="nw",image=self.I67)
         if TType == '{': self.canvas.create_image(x,y,anchor="nw",image=self.I68)
+        if TType == '}': self.canvas.create_image(x,y,anchor="nw",image=self.I69)
+        if TType == ']': self.canvas.create_image(x,y,anchor="nw",image=self.I70)
+        if TType == ';': self.canvas.create_image(x,y,anchor="nw",image=self.I71)
+        if TType == ':': self.canvas.create_image(x,y,anchor="nw",image=self.I72)
+        if TType == '@': self.canvas.create_image(x,y,anchor="nw",image=self.I73)
+        if TType == '#': self.canvas.create_image(x,y,anchor="nw",image=self.I74)
 
 def round_down(num, divisor):
     return num - (num%divisor)

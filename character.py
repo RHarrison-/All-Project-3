@@ -1,6 +1,9 @@
 from tkinter import *
 from Queues import *
+import pygame
 
+pygame.mixer.pre_init(44100, -16, 1, 512)
+pygame.init()
 class Character:
     def __init__(self,canvas):
         self.direction = 'down'
@@ -11,7 +14,7 @@ class Character:
         self.PlayerSquare = ''
         self.PlayerLocation = ()
         self.GridLocation = ()
-        self.canvas = canvas
+        self.canvas =    canvas
         self.speed = 1
         self.vx = 0
         self.vy = 0
@@ -22,9 +25,6 @@ class Character:
         self.size = 16
         self.backupvx = 0
         self.backupvy = 0
-        self.queue = Queue
-
-    #=================================
 
     def FollowPath(self):
         
@@ -54,6 +54,10 @@ class Character:
                 self.vx = ntx - x 
                 self.vy = nty - y
                 self.backupvx,self.backupvy = self.vx,self.vy
+                steps=pygame.mixer.Sound('assets\Steps_Grass1.wav').play()
+                steps.set_volume(0.06)
+                #winsound.PlaySound('assets/Steps_Grass1.wav',winsound.SND_ASYNC)
+                
      
         x = ((x *16) + (self.vx)*self.speed)  
         y = ((y *16) + (self.vy)*self.speed)
@@ -71,6 +75,7 @@ class Character:
         
 
         self.PlayerImage = PhotoImage(file = self.DirectionImages[self.direction][self.MovementCycle])
+        self.canvas.lift(self.PlayerSquare)
         self.canvas.itemconfig(self.PlayerSquare,image = self.PlayerImage)
 
         self.canvas.coords(self.PlayerSquare , x, y)
@@ -90,6 +95,7 @@ class Character:
 class Link(Character):
     def __init__(self,canvas):
         Character.__init__(self,canvas)
+        self.rupees = 0
         self.PlayerImage = PhotoImage(file = 'assets/LinkStillDown.png')
         self.DirectionImages = {'down':['assets/LinkStillDown.png','assets/LinkMoveDown1.png','assets/LinkMoveDown2.png'],
                                 'right':['assets/LinkStillRight.png','assets/LinkMoveRight1.png','assets/LinkMoveRight2.png'],
