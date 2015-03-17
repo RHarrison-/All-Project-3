@@ -15,11 +15,19 @@ class squaregrid:
         self.SwitchWalls = []
         self.Selected_Character = 0
         self.SelectedPlayerImage = ''
+        self.rupeecountimage = ''
+        self.rupeenumber = ''
+        self.keycountimage = ''
+        self.keynumber = ''
         
         self.CursorSquare = ''
         self.MapData = {}
         self.rupees = []
+        self.Keys = []
         self.MousePosition = ()
+
+        self.LandmarkList = []
+        self.TreasureList = []
         self.cursorimage = PhotoImage(file = 'assets\cursor.png')
         self.cursorimageRED = PhotoImage(file = 'assets\cursorred.png')
         
@@ -108,6 +116,12 @@ class squaregrid:
         self.I72 = PhotoImage(file = 'assets/rupeeRED.png')#:
         self.I73 = PhotoImage(file = 'assets/rupeeBLUE.png')#@
         self.I74 = PhotoImage(file = 'assets/rupeeGREEN.png')##
+        self.I75 = PhotoImage(file = 'assets/Path.png')#~
+        self.I76 = PhotoImage(file = 'assets/PinkFlower.png')#,
+        self.I77 = PhotoImage(file = 'assets/HorizontalPath1.png')#<
+        self.I78 = PhotoImage(file = 'assets/HorizontalPath2.png')#.
+        self.I79 = PhotoImage(file = 'assets/ZeldaCage.png')#>
+        self.I80 = PhotoImage(file = 'assets/Key.png')#/
 
     def MapDataCoords(self,gridid): #pass grid coords, not canvas coords.
         x,y = gridid
@@ -132,7 +146,7 @@ class squaregrid:
         
         self.canvas.delete(self.CursorSquare)
         
-        if self.MapData[gridid] == '1':
+        if self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{' or self.MapData[gridid] ==  '}' or self.MapData[gridid] ==  ';' or self.MapData[gridid] ==  ':' or self.MapData[gridid] == '@' or self.MapData[gridid] == '#' or self.MapData[gridid] == '~' or self.MapData[gridid] == '<' or self.MapData[gridid] == '.' :
             Image = self.cursorimage
         else:
             Image = self.cursorimageRED
@@ -174,10 +188,20 @@ class squaregrid:
         for rupee in self.rupees:
             if rupee.collected == False:
                 l,k = rupee.location
-                x,y = self.screenlocation
+                x,y = self.screenlocation               
+                
                 if l > x and l < x+40:
                     if k > y and k < y+25:
                         rupee.draw()
+
+        for key in self.Keys:
+            if key.collected == False:
+                l,k = key.location
+                x,y = self.screenlocation               
+                
+                if l > x and l < x+40:
+                    if k > y and k < y+25:
+                        key.draw()
 
         x,y = self.Characters[c].GridLocation
         
@@ -267,7 +291,7 @@ class squaregrid:
     def passable(self, gridid):
         x,y = gridid
         gridid = self.MapDataCoords(gridid)
-        return self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{' or self.MapData[gridid] ==  '}' or self.MapData[gridid] ==  ';' or self.MapData[gridid] ==  ':' or self.MapData[gridid] == '@' or self.MapData[gridid] == '#'
+        return self.MapData[gridid] == '1' or self.MapData[gridid] == '[' or self.MapData[gridid] ==  '{' or self.MapData[gridid] ==  '}' or self.MapData[gridid] ==  ';' or self.MapData[gridid] ==  ':' or self.MapData[gridid] == '@' or self.MapData[gridid] == '#' or self.MapData[gridid] == '~' or self.MapData[gridid] == '<' or self.MapData[gridid] == '.'
     
 
     def in_bounds(self, gridid):
@@ -316,9 +340,7 @@ class squaregrid:
                 self.MoveScreen(c)
             if y == self.screenheight-1 and self.Characters[c].direction == 'down':
                 self.MoveScreen(c)
-
-        
-
+            
     def Click(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
@@ -332,29 +354,26 @@ class squaregrid:
         
         self.ClosestPath(self.ScreenCoords(gridid))
 
+    def Rclick(self,event):
+        if self.Characters[self.Selected_Character].name == 'Link':
+            pass           
+
+        if self.Characters[self.Selected_Character].name == 'Zelda':
+            pass            
         
-
-    def cut(self,gridid):
-         self.ClosestPath(gridid)
-
     def Key(self,event):
-         if event.char == 'z':
-             self.Selected_Character +=1
-             if self.Selected_Character == 2:
-                 self.Selected_Character = 0
-             print('2 pressed')
+         pass
 
     def MouseWheel(self,event): #Changing between characters.
         if event.delta == 120:
              self.Selected_Character -=1
-             
+    
         if event.delta == -120:
              self.Selected_Character +=1
-            
+        
 
         if self.Selected_Character == len(self.Characters):
              self.Selected_Character = 0
-
         if self.Selected_Character == -1:
             self.Selected_Character = len(self.Characters)-1
 
@@ -487,7 +506,13 @@ class squaregrid:
         if TType == ':': self.canvas.create_image(x,y,anchor="nw",image=self.I72)
         if TType == '@': self.canvas.create_image(x,y,anchor="nw",image=self.I73)
         if TType == '#': self.canvas.create_image(x,y,anchor="nw",image=self.I74)
-
+        if TType == '~': self.canvas.create_image(x,y,anchor="nw",image=self.I75)
+        if TType == ',': self.canvas.create_image(x,y,anchor="nw",image=self.I76)
+        if TType == '<': self.canvas.create_image(x,y,anchor="nw",image=self.I77)
+        if TType == '.': self.canvas.create_image(x,y,anchor="nw",image=self.I78)
+        if TType == '>': self.canvas.create_image(x,y,anchor="nw",image=self.I79)
+        if TType == '/': self.canvas.create_image(x,y,anchor="nw",image=self.I80)
+        
 def round_down(num, divisor):
     return num - (num%divisor)
 

@@ -5,7 +5,6 @@ class SwitchWall:
         self.World = World
         self.location = PLocation
         self.flippos = 0
-        #self.PPlateImage = PhotoImage(file = 'assets\PressurePlate.png')
         self.SWTiles = SWTiles
 
         self.World.MapData[self.location] = '}'

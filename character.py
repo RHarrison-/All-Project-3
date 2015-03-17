@@ -2,20 +2,24 @@ from tkinter import *
 from Queues import *
 import pygame
 
+
 pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.init()
+
+
+
 class Character:
     def __init__(self,canvas):
-        self.direction = 'down'
         
+        self.direction = 'down'
         self.MovementCycle = 1
         self.Cycle = 0
-                   
         self.PlayerSquare = ''
         self.PlayerLocation = ()
         self.GridLocation = ()
         self.canvas =    canvas
         self.speed = 1
+        self.Score = 0
         self.vx = 0
         self.vy = 0
         self.NextTile = (0,0)
@@ -25,6 +29,11 @@ class Character:
         self.size = 16
         self.backupvx = 0
         self.backupvy = 0
+
+
+
+    #=================================
+
 
     def FollowPath(self):
         
@@ -56,7 +65,7 @@ class Character:
                 self.backupvx,self.backupvy = self.vx,self.vy
                 steps=pygame.mixer.Sound('assets\Steps_Grass1.wav').play()
                 steps.set_volume(0.06)
-                #winsound.PlaySound('assets/Steps_Grass1.wav',winsound.SND_ASYNC)
+              
                 
      
         x = ((x *16) + (self.vx)*self.speed)  
@@ -92,19 +101,33 @@ class Character:
         if y>0: self.direction = 'up'
         if y<0: self.direction = 'down'
 
+    
+
 class Link(Character):
     def __init__(self,canvas):
         Character.__init__(self,canvas)
+
         self.rupees = 0
+        self.Keys = 0
+
+        self.name = 'Link'
+        self.colour = 'blue'
+
         self.PlayerImage = PhotoImage(file = 'assets/LinkStillDown.png')
         self.DirectionImages = {'down':['assets/LinkStillDown.png','assets/LinkMoveDown1.png','assets/LinkMoveDown2.png'],
                                 'right':['assets/LinkStillRight.png','assets/LinkMoveRight1.png','assets/LinkMoveRight2.png'],
                                 'up':['assets/LinkStillUp.png','assets/LinkMoveUp1.png','assets/LinkMoveUp2.png'],
                                 'left':['assets/LinkStillLeft.png','assets/LinkMoveLeft1.png','assets/LinkMoveLeft2.png']}
 
+    def cut(self,gridid):
+         self.ClosestPath(gridid)
+
+         
 class Zelda(Character):
     def __init__(self,canvas):
         Character.__init__(self,canvas)
+        self.name = 'Zelda'
+        self.colour = 'pink'
         self.PlayerImage = PhotoImage(file = 'assets/ZeldaMoveDown1.png')
         self.DirectionImages = {'down':['assets/ZeldaMoveDown1.png','assets/ZeldaMoveDown1.png','assets/ZeldaMoveDown2.png'],
                                 'right':['assets/ZeldaMoveRight1.png','assets/ZeldaMoveRight1.png','assets/ZeldaMoveRight2.png'],

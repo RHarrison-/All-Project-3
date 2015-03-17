@@ -9,8 +9,8 @@ class surface():
         self.canvas_Tiles = ''
         self.TType = '1'
         self.TNum = '1'
-        self.x = 0
-        self.y = 0
+        self.x = 120
+        self.y = 75
         self.TileWindow = {}
         self.MapData = {}
         self.MapExport = []
@@ -18,76 +18,68 @@ class surface():
         self.rotation = 0
         self.screenlocation = (0,0)
         
+        self.stoneimage = PhotoImage(file = 'assets\Stone.png')
         self.grassimage1 = PhotoImage(file = 'assets\Grass1.png')
         self.grassimage2 = PhotoImage(file = 'assets\Grass2.png')
         self.waterimage1 = PhotoImage(file = 'assets\Water1.png')
         self.waterimage2 = PhotoImage(file = 'assets\Water2.png')
-        self.stoneimage = PhotoImage(file = 'assets\Stone.png')
         self.flowerimage = PhotoImage(file = 'assets\Flower.png')
         self.stumpimage = [[PhotoImage(file = 'assets\TLStump.png'),
                            PhotoImage(file = 'assets\BLStump.png')],
                            [PhotoImage(file = 'assets\TRStump.png'),
                            PhotoImage(file = 'assets\BRStump.png')]]
-
-        self.I1 = PhotoImage(file = 'assets\GrassCliffN.png')
-        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')
-        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')
-        self.I4 = PhotoImage(file = 'assets\WaterN.png')
-        
-        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')
-        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')
-        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')
-        self.I8= PhotoImage(file = 'assets\WaterCliffNE.png')
-        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')
-        self.I10 = PhotoImage(file = 'assets\WaterNE.png')
-        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')
-        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')
-
-        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')
-        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')
-        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')
-
-        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png') #p
-        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png') #q
-        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png') #r
-
-        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png') #s
-        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png') #t
-        
-        self.I21 = PhotoImage(file = 'assets\CliffTopW.png') #u
-        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png') #v
-        self.I23 = PhotoImage(file = 'assets\WaterW.png') #w
-        self.I24= PhotoImage(file = 'assets\GrassCliffSW.png') #x
-
-        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png') #y 
-        self.I26 = PhotoImage(file = 'assets\GrassSW.png') #z
-        
-        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') #A 
-        self.I28 = PhotoImage(file = 'assets\WaterSW.png') #B
-        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') #C 
-        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png') #D
-        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') #E 
-        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')# F
-        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')# G
-        self.I34 = PhotoImage(file = 'assets\WaterS.png')# H
-        self.I35 = PhotoImage(file = 'assets\GrassSE.png')# I
-        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')# J
-        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')# K
-        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')# L
-        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')# M
-        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')# N
-        self.I41 = PhotoImage(file = 'assets\Tree1.png')# O
-        self.I42 = PhotoImage(file = 'assets\Tree2.png')# P
-        self.I43 = PhotoImage(file = 'assets\Tree3.png')# Q
-        self.I44 = PhotoImage(file = 'assets\Tree4.png')# R
-        self.I45 = PhotoImage(file = 'assets\Tree5.png')# S
-        self.I46 = PhotoImage(file = 'assets\Tree6.png')# T
-        self.I47 = PhotoImage(file = 'assets\Tree7.png')# U
-        self.I48 = PhotoImage(file = 'assets\Tree8.png')# V
-        self.I49 = PhotoImage(file = 'assets\Tree9.png')# W
-        self.I50 = PhotoImage(file = 'assets\Tree10.png')# X
-        self.I51 = PhotoImage(file = 'assets\Tree11.png')# Y
+        self.I1 = PhotoImage(file = 'assets\GrassCliffN.png') #a
+        self.i1 = PhotoImage(file = 'assets\TopCliffN.png')#b
+        self.I2 = PhotoImage(file = 'assets\TopCliffN.png')#c
+        self.I3 = PhotoImage(file = 'assets\WaterCliffN.png')#d
+        self.I4 = PhotoImage(file = 'assets\WaterN.png')#e
+        self.I5 = PhotoImage(file = 'assets\GrassCliffNE.png')#f
+        self.I6 = PhotoImage(file = 'assets\TopCliffNE.png')#g
+        self.I7 = PhotoImage(file = 'assets\MiddleCliffNE.png')#h
+        self.I8 = PhotoImage(file = 'assets\WaterCliffNE.png')#i
+        self.I9 = PhotoImage(file = 'assets\WaterCLiffNtoNE.png')#j
+        self.I10 = PhotoImage(file = 'assets\WaterNE.png')#k
+        self.I11 = PhotoImage(file = 'assets\WaterOuterNE.png')#l
+        self.I12 = PhotoImage(file = 'assets\WaterOuterNE2.png')#m
+        self.I13 = PhotoImage(file = 'assets\TopCliffE.png')#n
+        self.I14 = PhotoImage(file = 'assets\BottomCliffE.png')#o
+        self.I15 = PhotoImage(file = 'assets\WaterCliffE.png')#p
+        self.I16 = PhotoImage(file = 'assets\TopCliffNW.png')#q
+        self.I17 = PhotoImage(file = 'assets\CliffMiddleNW.png')#r
+        self.I18 = PhotoImage(file = 'assets\CliffBottomNW.png')#s
+        self.I19 = PhotoImage(file = 'assets\CliffGrassNW.png')#t
+        self.I20 = PhotoImage(file = 'assets\WaterCliffNW.png') #u       
+        self.I21 = PhotoImage(file = 'assets\CliffTopW.png')#v
+        self.I22 = PhotoImage(file = 'assets\MiddleCliffW.png')#w
+        self.I23 = PhotoImage(file = 'assets\WaterW.png')#x
+        self.I24 = PhotoImage(file = 'assets\GrassCliffSW.png')#y
+        self.I25 = PhotoImage(file = 'assets\TopCliffSW.png')  #z
+        self.I26 = PhotoImage(file = 'assets\GrassSW.png')      #A
+        self.I27 = PhotoImage(file = 'assets\BottomCliffSW.png') #B
+        self.I28 = PhotoImage(file = 'assets\WaterSW.png') #C
+        self.I29 = PhotoImage(file = 'assets\WaterCornerSW.png') #D
+        self.I30 = PhotoImage(file = 'assets\GrassCliffS.png')#E
+        self.I31 = PhotoImage(file = 'assets\TopCliffS.png') #F
+        self.I32 = PhotoImage(file = 'assets\MiddleCliffS.png')#G
+        self.I33 = PhotoImage(file = 'assets\BottomCliffS.png')#H
+        self.I34 = PhotoImage(file = 'assets\WaterS.png')#I
+        self.I35 = PhotoImage(file = 'assets\GrassSE.png')#J
+        self.I36 = PhotoImage(file = 'assets\GrassCliffSE.png')#K
+        self.I37 = PhotoImage(file = 'assets\TopCliffSE.png')#L
+        self.I38 = PhotoImage(file = 'assets\BottomCliffSE.png')#M
+        self.I39 = PhotoImage(file = 'assets\WaterCliffSE.png')#N
+        self.I40 = PhotoImage(file = 'assets\CornerWaterSE.png')#O
+        self.I41 = PhotoImage(file = 'assets\Tree1.png')#O
+        self.I42 = PhotoImage(file = 'assets\Tree2.png')#P
+        self.I43 = PhotoImage(file = 'assets\Tree3.png')#Q
+        self.I44 = PhotoImage(file = 'assets\Tree4.png')#R
+        self.I45 = PhotoImage(file = 'assets\Tree5.png')#S
+        self.I46 = PhotoImage(file = 'assets\Tree6.png')#T
+        self.I47 = PhotoImage(file = 'assets\Tree7.png')#U
+        self.I48 = PhotoImage(file = 'assets\Tree8.png')#V
+        self.I49 = PhotoImage(file = 'assets\Tree9.png')#W
+        self.I50 = PhotoImage(file = 'assets\Tree10.png')#X
+        self.I51 = PhotoImage(file = 'assets\Tree11.png')#Y
         self.I52 = PhotoImage(file = 'assets\Tree12.png')#Z
         self.I53 = PhotoImage(file = 'assets\Tree13.png')#!
         self.I54 = PhotoImage(file = 'assets\Tree14.png')#"
@@ -105,85 +97,64 @@ class surface():
         self.I66 = PhotoImage(file = 'assets\GrassGrassCliffSE.png')#+
         self.I67 = PhotoImage(file = 'assets\StepsLeft.png')#[
         self.I68 = PhotoImage(file = 'assets\StepsRight.png')#{
+        self.I69 = PhotoImage(file = 'assets\Path.png')#~
+        self.I70 = PhotoImage(file = 'assets\PinkFlower.png')#,
+        self.I71 = PhotoImage(file = 'assets\HorizontalPath1.png')#~
+        self.I72 = PhotoImage(file = 'assets\HorizontalPath2.png')#,
+        self.I73 = PhotoImage(file = 'assets\ZeldaCage.png')#>
+        self.I74 = PhotoImage(file = 'assets\Key.png')#/
         
     def openfile(self):
         
         filename = tkfd.askopenfilename()
 
-        self.create(40,25)
+        self.create()
          
         y=-1
         
         with open(filename,'r') as f:
             for line in f:
-                y+=1
+                y += 1
                 x=-1
-                for char in line:
-                    x+=1
-                    self.TType = char
-                    self.draw(self.canvas,self.TType,x*16,y*16)
+                for character in line:
+                    x += 1
+                    self.MapData[(x,y)] = character
+                    self.width = len(line)
+                    self.height = y
+
+        p = self.screenlocation[0] 
+        r = self.screenlocation[1]
+        
+        for s in range (0,self.x):
+            for q in range (0,self.y):
+                if ( p+s,r+q) in self.MapData: self.drawtile((s,q),self.MapData[( p+s,r+q)],self.canvas)
+
                          
     def movecamera(self,direction):
         self.canvas.delete(ALL)
-    
-        if direction == 'right':            
-            self.screenlocation = (self.screenlocation[0]+35,self.screenlocation[1])
-            print(self.MapData[(2,2)])
-            p = self.screenlocation[0] 
-            r = self.screenlocation[1] 
+        moveam = 0
+        if direction == 'right': movam = (40,0)
+        if direction == 'left': movam = (-40,0)
+        if direction == 'up': movam = (0,-25)
+        if direction == 'down': movam = (0,25)
 
-            for s in range (0,35):
-                for q in range (0,20):
-                    if ( r+q,p+s) in self.MapData: (self.draw(self.canvas,self.MapData[( r+q,p+s)],s*16,q*16))
+        self.screenlocation = (addcords(self.screenlocation,movam))
 
-        if direction == 'left':
-            
-            self.screenlocation = (self.screenlocation[0]-35,self.screenlocation[1])
-
-            p = self.screenlocation[0] 
-            r = self.screenlocation[1]
-
-            for s in range (0,35):
-                for q in range (0,20):
-                    
-                    if ( r+q,p+s) in self.MapData:
-                        self.draw(self.canvas,self.MapData[( r+q,p+s)],s*16,q*16)
-                        
-        if direction == 'up':
-            
-            self.screenlocation = (self.screenlocation[0],self.screenlocation[1]-20)
-
-            p = self.screenlocation[0] 
-            r = self.screenlocation[1] 
-
-            for s in range (0,35):
-                for q in range (0,20):
-                    if ( r+q,p+s) in self.MapData: self.draw(self.canvas,self.MapData[( r+q,p+s)],s*16,q*16)
-
-        if direction == 'down':
-            
-            self.screenlocation = (self.screenlocation[0],self.screenlocation[1]+20)
-
-            p = self.screenlocation[0] 
-            r = self.screenlocation[1] 
-
-            for s in range (0,35):
-                for q in range (0,20):
-                    if ( r+q,p+s) in self.MapData: self.draw(self.canvas,self.MapData[( r+q,p+s)],s*16,q*16)
-                    
+        p = self.screenlocation[0] 
+        r = self.screenlocation[1]
+        
+        for s in range (0,40):
+            for q in range (0,25):
+                if ( p+s,r+q) in self.MapData: self.drawtile((s,q),self.MapData[( p+s,r+q)],self.canvas)
+ 
         print(self.screenlocation)
-                
-
-    def reset(self):
-        for x in range (0,self.x):
-            for y in range(0,self.y):
-                self.draw(self.canvas,'1',x*16,y*16)
 
     def savemap(self):
         self.MapExport.clear()
+        
         for x in range (0,self.y):
             for y in range (0,self.x):
-                self.MapExport.append(self.MapData[(x,y)])
+                self.MapExport.append(self.MapData[(y,x)])
 
         self.MapName = tkfd.asksaveasfile(mode = 'w', defaultextension=".txt")
         
@@ -199,13 +170,26 @@ class surface():
             else:
                self.MapName.write(str(item))
                
-    def draw(self,canvas,TType,x,y):
-                
+    def drawgrid(self):
+        
+        p = self.screenlocation[0] 
+        r = self.screenlocation[1] 
+
+        for s in range (0,40):
+            for q in range (0,25):
+                if ( p+s,r+q) in self.MapData: self.drawtile((s,q),self.MapData[( p+s,r+q)],self.canvas)
+
+    def drawtile(self,gridid,TType,canvas):
+        
+        x,y = gridid        
+        x = (x*16)+2
+        y = (y*16)+2
+
         if TType == '1':
-            rand = random.randint(1, 100)
-            if rand <95:
-                canvas.create_image(x,y,anchor="nw",image=self.grassimage1)
-            elif rand >=95:
+             rand = random.randint(1, 100)
+             if rand <95:
+                 canvas.create_image(x,y,anchor="nw",image=self.grassimage1)
+             elif rand >=95:
                  canvas.create_image(x,y,anchor="nw",image=self.grassimage2)
  
         if TType == '2':
@@ -213,7 +197,7 @@ class surface():
             if rand <80:
                 canvas.create_image(x,y,anchor="nw",image=self.waterimage1)
             elif rand  >=80:
-                canvas.create_image(x,y,anchor="nw",image=self.waterimage2)
+                canvas.create_image(x,y,anchor="nw",image=self.waterimage2)      
 
         if TType == '3': canvas.create_image(x,y,anchor="nw",image=self.stoneimage)
         if TType == '4': canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][0])
@@ -221,7 +205,6 @@ class surface():
         if TType == '6': canvas.create_image(x,y,anchor="nw",image=self.stumpimage[0][1])
         if TType == '7': canvas.create_image(x,y,anchor="nw",image=self.stumpimage[1][1])
         if TType == '8': canvas.create_image(x,y,anchor="nw",image=self.flowerimage)
-        
         if TType == 'a': canvas.create_image(x,y,anchor="nw",image=self.I1)
         if TType == 'b': canvas.create_image(x,y,anchor="nw",image=self.I2)
         if TType == 'c': canvas.create_image(x,y,anchor="nw",image=self.I3)
@@ -231,7 +214,7 @@ class surface():
         if TType == 'g': canvas.create_image(x,y,anchor="nw",image=self.I7)
         if TType == 'h': canvas.create_image(x,y,anchor="nw",image=self.I8)
         if TType == 'i': canvas.create_image(x,y,anchor="nw",image=self.I9)
-        if TType == 'j': canvas.create_image(x,y,anchor="nw",image=self.I10)
+        if TType == 'j': cavas.create_image(x,y,anchor="nw",image=self.I10)
         if TType == 'k': canvas.create_image(x,y,anchor="nw",image=self.I11)
         if TType == 'l': canvas.create_image(x,y,anchor="nw",image=self.I12)
         if TType == 'm': canvas.create_image(x,y,anchor="nw",image=self.I13)
@@ -248,7 +231,6 @@ class surface():
         if TType == 'x': canvas.create_image(x,y,anchor="nw",image=self.I24)
         if TType == 'y': canvas.create_image(x,y,anchor="nw",image=self.I25)
         if TType == 'z': canvas.create_image(x,y,anchor="nw",image=self.I26)
-
         if TType == 'A': canvas.create_image(x,y,anchor="nw",image=self.I27)
         if TType == 'B': canvas.create_image(x,y,anchor="nw",image=self.I28)
         if TType == 'C': canvas.create_image(x,y,anchor="nw",image=self.I29)
@@ -291,13 +273,20 @@ class surface():
         if TType == '+': canvas.create_image(x,y,anchor="nw",image=self.I66)
         if TType == '[': canvas.create_image(x,y,anchor="nw",image=self.I67)
         if TType == '{': canvas.create_image(x,y,anchor="nw",image=self.I68)
-
-        self.MapData[(y//16,x//16)] = self.TType
+        if TType == '~': canvas.create_image(x,y,anchor="nw",image=self.I69)
+        if TType == ',': canvas.create_image(x,y,anchor="nw",image=self.I70)
+        if TType == '<': canvas.create_image(x,y,anchor="nw",image=self.I71)
+        if TType == '.': canvas.create_image(x,y,anchor="nw",image=self.I72)
+        if TType == '>': canvas.create_image(x,y,anchor="nw",image=self.I73)
+        if TType == '/': canvas.create_image(x,y,anchor="nw",image=self.I74)
         
     def Click(self,event):
         x=round_down(event.x,16)
         y=round_down(event.y,16)
-        self.draw(self.canvas,self.TType,x,y)
+        x=x//16
+        y=y//16
+        self.drawtile((x,y),self.TType,self.canvas)
+        self.MapData[x,y] = self.TType
         
     def TClick(self,event):
 
@@ -339,38 +328,37 @@ class surface():
                 self.rotation +=1
                 if self.rotation ==2: self.rotation = 0
 
-    def create(self,x,y):
+    def create(self):
 
-        self.x = x
-        self.y = y
-    
-        height = y*16
-        width = x*16
-
+        self.height = 800
+        self.width = 1280
         
-        self.canvas = Canvas(self.window,width=width-2, height=height-2, bg='black')
-        self.canvas_Tiles = Canvas(self.window,width=320, height=height, bg='white')
+        self.canvas = Canvas(self.window,width=self.width-2, height=self.height-2, bg='black')
+        self.canvas_Tiles = Canvas(self.window,width=320, height=self.height, bg='green')
 
         self.canvas.grid(row = 0,column = 0)
         self.canvas_Tiles.grid(row = 0,column =1,rowspan=2)
 
-        q=-1
+        y=-1
         with open('TilesforUse.txt','r') as f:
             for line in f:
-                q+=1
+                y += 1
                 x=-1
-                for char in line:
-                    if char =='\n': continue
-                    x+=1
-                    self.TType = char
-                    self.draw(self.canvas_Tiles,self.TType,x*16,q*16)
-                    self.TileWindow[(x,q)] = char
-   
-        self.TType = '1'
+                for character in line:
+                    x += 1
+                    self.TileWindow[(x,y)] = character
+                    
+        q=-1
+        for s in range (0,40):
+            for q in range (0,25):
+                if (s,q) in self.TileWindow:
+                    self.drawtile((s,q),self.TileWindow[(s,q)],self.canvas_Tiles)
 
-        for x in range (0,self.x):
-            for y in range(0,self.y):
-                self.draw(self.canvas,self.TType,x*16,y*16)
+        b=-1
+        for v in range (0,self.y):
+            for b in range (0,self.x):
+                self.MapData[(b,v)] = '1'
+     
 
 
         self.canvas.bind('<Button-1>',self.Click)
@@ -394,9 +382,8 @@ def addcords(cord1,cord2):
 
 def something():
     surface1 = surface()
-    #surface1.create(80,50)
+    #surface1.create()
     surface1.openfile()
-    print (surface1.MapData[(2,2)])
     surface1.window.mainloop()
     
 something()

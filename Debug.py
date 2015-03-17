@@ -17,7 +17,7 @@ class DebugWindow():
     def update(self):
         self.tick +=1
 
-        if self.tick == 10:
+        if self.tick == 20:
             self.tick = 0
         
             self.canvas.delete(ALL)
@@ -48,7 +48,11 @@ class DebugWindow():
 
             for s in range (0,40):
                 for q in range (0,25):
-                    if ( p+s,r+q) in self.World.MapData: self.canvas.create_text((s*10+30,q*10+230),text = self.World.MapData[( p+s,r+q)])
+                    colour = 'black'
+                    if ( p+s,r+q) in self.World.MapData:
+                        if self.World.MapData[( p+s,r+q)] == ']': colour = 'red'
+                        if self.World.MapData[( p+s,r+q)] == ';': colour = 'green'
+                        self.canvas.create_text((s*10+30,q*10+230),text = self.World.MapData[( p+s,r+q)],fill = colour)
             
             
 

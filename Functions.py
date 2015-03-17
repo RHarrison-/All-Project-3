@@ -1,5 +1,6 @@
 import random
 from tkinter import *
+from character import *
 import pygame
 
   
@@ -21,7 +22,6 @@ def polling(World):
                 World.SwitchWalls[y].active()
                 sSwitch = pygame.mixer.Sound('assets\PP_Switch.wav').play()
                 sSwitch.set_volume(0.08)
-                
                 continue
                 
             if World.SwitchWalls[y].flippos == 1:
@@ -43,10 +43,45 @@ def polling(World):
                 World.Characters[0].rupees += rupee.points
                 CRupee = pygame.mixer.Sound('assets\GetRupeeGreen.wav').play()
                 CRupee.set_volume(0.15)
+                World.canvas2.delete(World.rupeenumber)
+                World.rupeenumber = World.canvas2.create_text(70,9,anchor = 'nw',text = World.Characters[0].rupees)
+
+        for Key in World.Keys:
+            if Key.location == (x,y) and Key.collected == False:
+                Key.collected = True
+                World.canvas.delete(Key.keysquare)
+                World.Characters[0].Keys += 1
+                World.canvas2.delete(World.keynumber)
+                World.keynumber = World.canvas2.create_text(120,9,anchor = 'nw',text = World.Characters[0].Keys)
+                
+
+    x,y = World.MapDataCoords(World.Characters[0].GridLocation)
+    
+
+    neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
+
+    for neighbor in neighbors:
+        if neighbor not in World.MapData: continue
+        if World.MapData[neighbor] == '>':
+            if World.Characters[0].Keys > 0:
+                World.Characters[0].Keys -=1
+                World.canvas2.delete(World.keynumber)
+                World.keynumber = World.canvas2.create_text(120,9,anchor = 'nw',text = World.Characters[0].Keys)
+                p,q = World.ScreenCoords(neighbor)
+                p=p*16
+                q=q*16
+                World.canvas.create_image(p,q,anchor = 'nw',image = World.grassimage1)
+                World.SpawnCharacter((p//16,q//16),Zelda)
+                World.MapData[neighbor] = '1'
                 
 def randomvalidcoord(World): #Finds a random coordinate which can be used(not a wall)
+
     x1 = random.randint(1,World.width)
     y1 = random.randint(1,World.height)
+
+    x1 = random.randint(1,35)
+    y1 = random.randint(1,23)
+
         
     if World.MapData[(x1,y1)] == '1':
         return (x1,y1)
