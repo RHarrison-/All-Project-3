@@ -8,7 +8,7 @@ class DebugWindow():
         self.World = World
         window1 = Tk()
         window1.geometry('+1100+300')
-        self.canvas = Canvas(window1, width=700, height=500, bg='white')
+        self.canvas = Canvas(window1, width=700, height=1000, bg='white')
         self.tick = 0
         
         self.canvas.pack()
@@ -49,7 +49,14 @@ class DebugWindow():
             for s in range (0,40):
                 for q in range (0,25):
                     colour = 'black'
-                    if ( p+s,r+q) in self.World.MapData:
+                    if (p+s,r+q) in self.World.MapData:
+                        for rupee in self.World.rupees:
+                            if (p+s,r+q) == rupee.location:
+                                if rupee.collected == True:
+                                    continue
+                                self.canvas.create_text((s*10+30,q*10+230),text = '#',fill = 'yellow')
+                               
+                                
                         if self.World.MapData[( p+s,r+q)] == ']': colour = 'red'
                         if self.World.MapData[( p+s,r+q)] == ';': colour = 'green'
                         self.canvas.create_text((s*10+30,q*10+230),text = self.World.MapData[( p+s,r+q)],fill = colour)
@@ -62,6 +69,6 @@ class DebugWindow():
             self.canvas.create_text(150,185,anchor = 'nw',text =  self.World.screenlocation)
             self.canvas.create_text(30,200,anchor = 'nw',text = 'Selected Character:' )
             self.canvas.create_text(150,200,anchor = 'nw',text =  self.World.Selected_Character)
-        
 
+            
         

@@ -19,6 +19,7 @@ class squaregrid:
         self.rupeenumber = ''
         self.keycountimage = ''
         self.keynumber = ''
+        self.Automated = True
         
         self.CursorSquare = ''
         self.MapData = {}
@@ -123,6 +124,27 @@ class squaregrid:
         self.I79 = PhotoImage(file = 'assets/ZeldaCage.png')#>
         self.I80 = PhotoImage(file = 'assets/Key.png')#/
 
+    def Automate(self):
+        hold = self.Selected_Character
+        available = 0
+        for rupee in self.rupees:
+            if rupee.onscreen == True:
+                if rupee.collected == False:
+                    available +=1
+
+        if available == 0:
+            self.Automated = False
+            return
+        
+        for x in range (1,len(self.Characters)):
+            self.Selected_Character = x
+            if self.Characters[x].HasObjective == False:
+                location = self.Characters[x].FindNewObjective(self.rupees)
+                #location = self.ScreenCoords((location))
+                self.ClosestPath(self.ScreenCoords(location))
+
+        self.Selected_Character = hold      
+          
     def MapDataCoords(self,gridid): #pass grid coords, not canvas coords.
         x,y = gridid
         p,q = self.screenlocation
@@ -186,12 +208,14 @@ class squaregrid:
                 if ( p+s,r+q) in self.MapData: (self.drawtile((s,q),self.MapData[( p+s,r+q)]))
 
         for rupee in self.rupees:
+            rupee.onscreen = False
             if rupee.collected == False:
                 l,k = rupee.location
                 x,y = self.screenlocation               
                 
                 if l > x and l < x+40:
                     if k > y and k < y+25:
+                        rupee.onscreen = True
                         rupee.draw()
 
         for key in self.Keys:
@@ -362,7 +386,11 @@ class squaregrid:
             pass            
         
     def Key(self,event):
-         pass
+         if event.char == 'a':
+             if self.Automated == True:
+                 self.Automated = False
+             else:
+                 self.Automated = True
 
     def MouseWheel(self,event): #Changing between characters.
         if event.delta == 120:
@@ -512,6 +540,7 @@ class squaregrid:
         if TType == '.': self.canvas.create_image(x,y,anchor="nw",image=self.I78)
         if TType == '>': self.canvas.create_image(x,y,anchor="nw",image=self.I79)
         if TType == '/': self.canvas.create_image(x,y,anchor="nw",image=self.I80)
+
         
 def round_down(num, divisor):
     return num - (num%divisor)

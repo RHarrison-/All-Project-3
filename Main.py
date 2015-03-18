@@ -3,8 +3,7 @@ from ProgramSetup import *
 from tkinter import *
 from Functions import *
 from Debug import *
-import pygame
-import winsound
+#import pygame
 import os
 
 #========================= Initialisation ============================
@@ -32,17 +31,19 @@ mapname = Maps[choice]
 
 #============================== Main =================================
 
-Debug1 = DebugWindow(World)
-pygame.mixer.pre_init(44100, -16, 1, 512)
-pygame.init()
-Music = pygame.mixer.Sound('assets\KokiriForest.wav').play()
-Music.set_volume(0.05)
+#Debug1 = DebugWindow(World)
+#pygame.mixer.pre_init(44100, -16, 1, 512)
+#pygame.init()
+#Music = pygame.mixer.Sound('assets\KokiriForest.wav').play()
+#Music.set_volume(0.05)
 Running = True
 
 while Running == True:
+    if World.Automated == True:
+        World.Automate()
     polling(World)
     World.CheckScreenEdge()
-    Debug1.update()
+    #Debug1.update()
     World.canvas.update()
     time.sleep(0.01)
 window.mainloop()

@@ -1,10 +1,11 @@
 from tkinter import *
 from Queues import *
-import pygame
+from math import sqrt
+#import pygame
 
 
-pygame.mixer.pre_init(44100, -16, 1, 512)
-pygame.init()
+#pygame.mixer.pre_init(44100, -16, 1, 512)
+#pygame.init()
 
 
 
@@ -39,7 +40,6 @@ class Character:
         
         if self.NextTile == (0,0): self.NextTile = self.Path.get()
         
-        
         self.vx,self.vy = self.backupvx,self.backupvy
         
         x,y = self.canvas.coords(self.PlayerSquare)
@@ -49,8 +49,9 @@ class Character:
         x =x/16
         y =y/16
 
+
         if (x,y) == self.NextTile: #once the robot reaches the tile on the path it is heading towards.
-            if self.Path.empty(): #If the path is empty, then the robot has arrived at its objects. 
+            if self.Path.empty(): #If the path is empty, then the robot has arrived at its objects.
                 self.vx = 0
                 self.vy = 0
                 self.HasObjective = False
@@ -63,8 +64,8 @@ class Character:
                 self.vx = ntx - x 
                 self.vy = nty - y
                 self.backupvx,self.backupvy = self.vx,self.vy
-                steps=pygame.mixer.Sound('assets\Steps_Grass1.wav').play()
-                steps.set_volume(0.06)
+                #steps=pygame.mixer.Sound('assets\Steps_Grass1.wav').play()
+                #steps.set_volume(0.06)
               
                 
      
@@ -88,6 +89,25 @@ class Character:
         self.canvas.itemconfig(self.PlayerSquare,image = self.PlayerImage)
 
         self.canvas.coords(self.PlayerSquare , x, y)
+
+
+    def FindNewObjective(self,rupees):
+        shortestdistance = 999
+        rupeeloc = ''
+        
+        for rupee in rupees:
+            if rupee.collected == True: continue
+            if rupee.onscreen == True:
+                x,y = rupee.location
+                p,q = self.GridLocation
+                x = p-x
+                y = q-y
+                distance = sqrt(x**2 + y**2)
+                if distance < shortestdistance:
+                    shortestdistance = distance
+                    rupeeloc = rupee.location                    
+
+        return rupeeloc
 
     def PTO(self):
         x,y = self.GridLocation

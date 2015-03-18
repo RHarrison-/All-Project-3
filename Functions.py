@@ -1,7 +1,7 @@
 import random
 from tkinter import *
 from character import *
-import pygame
+#import pygame
 
   
 #======================== Functions ================================
@@ -11,8 +11,8 @@ This is a recursive function that i use to find a random coordinate on the map.
 This coordinate is valid if it is a grass tile, and that tile is not already
 occupied by a traffic light.
 '''
-pygame.mixer.pre_init(44100, -16, 1, 512)
-pygame.init()
+#pygame.mixer.pre_init(44100, -16, 1, 512)
+#pygame.init()
 def polling(World):
     for x in range (len(World.Characters)):
         if World.Characters[x].HasObjective == True:World.Characters[x].FollowPath()
@@ -20,8 +20,8 @@ def polling(World):
         for y in range (0,len(World.SwitchWalls)):
             if World.MapDataCoords(World.Characters[x].GridLocation) == World.SwitchWalls[y].location and World.SwitchWalls[y].flippos == 0:
                 World.SwitchWalls[y].active()
-                sSwitch = pygame.mixer.Sound('assets\PP_Switch.wav').play()
-                sSwitch.set_volume(0.08)
+                #sSwitch = pygame.mixer.Sound('assets\PP_Switch.wav').play()
+                #sSwitch.set_volume(0.08)
                 continue
                 
             if World.SwitchWalls[y].flippos == 1:
@@ -32,8 +32,8 @@ def polling(World):
 
                 if ontop == False:
                     World.SwitchWalls[y].inactive()
-                    sSwitch = pygame.mixer.Sound('assets\PP_Switch.wav').play()
-                    sSwitch.set_volume(0.09)
+                    #sSwitch = pygame.mixer.Sound('assets\PP_Switch.wav').play()
+                    #sSwitch.set_volume(0.09)
 
         x,y =  World.MapDataCoords(World.Characters[x].GridLocation)
         for rupee in World.rupees:
@@ -41,8 +41,11 @@ def polling(World):
                 rupee.collected = True
                 World.canvas.delete(rupee.rupeesquare)
                 World.Characters[0].rupees += rupee.points
-                CRupee = pygame.mixer.Sound('assets\GetRupeeGreen.wav').play()
-                CRupee.set_volume(0.15)
+                
+               # CRupee = pygame.mixer.Sound('assets\GetRupeeGreen.wav').play()
+               # #if CRupee is not None:
+                    #CRupee.set_volume(0.15)
+                
                 World.canvas2.delete(World.rupeenumber)
                 World.rupeenumber = World.canvas2.create_text(70,9,anchor = 'nw',text = World.Characters[0].rupees)
 

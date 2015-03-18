@@ -3,6 +3,7 @@ class rupee():
     def __init__(self,colour,canvas,location):
         self.colour = colour
         self.canvas = canvas
+        rupee.onscreen = ''
         self.collected = False
         self.location = location
         x,y = location
